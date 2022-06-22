@@ -89,9 +89,9 @@ Names can be anything you want them to be, but they have to be one word, and it'
  
 The next thing we need to know about are the values. There's a bunch of different kinds of values, but two that we're going to work with the most are **strings** and **numbers**. A string is just text. Your name is a string. Your home address is a string. For the most part, strings aren't hard -- they're anything you wouldn't do math on. So, for example, your phone number is a string, even though it's made up of numbers. If we add your phone number to mine, do we get something meaningful? No. Same with ZIP codes. They're strings.
 
-**To record a string, you put it in quotes.** So `myname <- "Matt"` is how to set the value of the variable myname to Matt. 
+**To record a string, you put it in quotes.** So `myname <- "Derek"` is how to set the value of the variable myname to Derek. 
 
-**To record a number, do _not_ use quotes.** So `myage <- 46` is how to set the value of the variable myage to 46. 
+**To record a number, do _not_ use quotes.** So `myage <- 51` is how to set the value of the variable myage to 51. 
 
 Where this becomes a problem is where you try to make a string into a number or try to do math with strings. 
 
@@ -103,31 +103,31 @@ In the window below, create two variables called Number1 and Number2. Set Number
 
 You get an error. `non-numeric argument to binary operator` is a rather computer-ish way of saying you tried to add 5 and Zebra. You can't add those two things together. So when you see that error, the non-numeric part is your hint that you're trying to do math on something that isn't a number. To fix it, just remove the quotes.
 
-Let's do something more real and calculate the number of home runs per game the Nebraska baseball team hit this season. To do this, we need to know the number of home runs the team hit and the number of games they played. Then it's just simple division. 
+Let's do something more real and calculate the number of goals per game the Maryland men's lacrosse team hit last season. To do this, we need to know the number of goals the team scored and the number of games they played. Then it's just simple division. 
 
-[You can find season stats here](https://huskers.com/sports/baseball/stats/2021) at the bottom of the table in a row labeled Totals. The number of games is in the column named GP-GS, which stands for Games Played - Games Started. See why naming things what they are is a rule in this class?
+[You can find season stats here](https://umterps.com/sports/mens-lacrosse/stats) at the top of the table in a row labeled Goals. The number of games is in the team's record.
 
-We're going to name the first variable HomeRuns and the second variable Games. **Pay Attention: HomeRuns, not Home Runs. The space will break it.** Set them equal to the numbers you got from the table, then divide HomeRuns by Games.
+We're going to name the first variable Goals and the second variable Games. Set them equal to the numbers you got from the table, then divide Goals by Games.
 
-*Write the code necessary to create the variables and set it to the number of home runs Nebraska hit in the 2021 season and the number of games played.*
+*Write the code necessary to create the variables and set it to the number of goals Maryland scored in the 2022 season and the number of games played.*
 
 ```{r variables-one, exercise=TRUE}
 
 ```
 ```{r variables-one-hint}
-HomeRuns <- ??
+Goals <- ??
 Games <- ??
 SOMETHING / SOMETHING
 ```
 ```{r variables-one-solution, exercise.reveal_solution = FALSE}
-HomeRuns <- 59
-Games <- 48
-HomeRuns / Games
+Goals <- 318
+Games <- 18
+Goals / Games
 ```
 ```{r variables-one-check}
 grade_this_code()
 ```
 
-Using some rounding, the Huskers hit 1.2 home runs per game this season. So if you watched a game, chances are you were going to see the Good Guys hit at least one bomb. Some days you get zero, some days you get more than one, but on average, they hit 1.2 per game. 
+Using some rounding, the Terps scored 17.7 goals per game this season. So if you watched a game, chances are you were going to see the Good Guys score quite a bit. 
 
-This isn't terribly useful just yet. If we wanted to know where the Huskers ranked in college baseball, it would take us forever to look up every team and do this math. But as you now know, variables can hold anything we want to store in them. Soon enough, that HomeRuns value will hold every team in college baseball, and Games will hold the games that every team played. The code doesn't change all that much, but we need to crawl before we walk.
+This isn't terribly useful just yet. If we wanted to know where the Terps ranked in college lacrosse, it would take us forever to look up every team and do this math. But as you now know, variables can hold anything we want to store in them. Soon enough, that Goals value will hold every team in college lacrosse, and Games will hold the games that every team played. The code doesn't change all that much, but we need to crawl before we walk.
