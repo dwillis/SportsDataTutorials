@@ -75,12 +75,12 @@ And the data.
 ```{r ggplot-load-data, message=FALSE, warning=FALSE}
 seasons <- read_csv("http://mattwaite.github.io/sportsdatafiles/volleyball1821.csv")
 
-huskers <- seasons %>%
+terps <- seasons %>%
   mutate(
     digsperset = Digs/S
   ) %>% 
   filter(
-    Institution == "Nebraska"
+    Institution == "Maryland"
   )
 
 big10 <- seasons %>%
@@ -128,16 +128,16 @@ To do this, we're going to do a few things we've done before -- we're going to m
     digsperset = ?????/?
   ) %>% 
   filter(
-    ?????????? == "Nebraska"
+    ?????????? == "Maryland"
   ) 
 ```
 ```{r ggplot-top-solution, exercise.reveal_solution = FALSE}
-huskers <- seasons %>%
+terps <- seasons %>%
   mutate(
     digsperset = Digs/S
   ) %>% 
   filter(
-    Institution == "Nebraska"
+    Institution == "Maryland"
   )
 ```
 ```{r ggplot-top-check}
@@ -160,17 +160,17 @@ grade_this_code()
 
 The easiest thing we can do is create a simple bar chart of our data. **Bar charts show magnitude. They invite you to compare how much more or less one thing is compared to others.**
 
-We could, for instance, create a bar chart of the digs per set. We might be asking the question: How much of an impact did adding Lexi Rodriguez, the defensive player of the year, to the team? To do that, we simply tell `ggplot2` what our dataset is, what element of the data we want to make the bar chart out of (which is the aesthetic), and the geometry type (which is the geom). It looks like this:
+We could, for instance, create a bar chart of the digs per set. We might be asking the question: How much of an impact did adding Milan Gomillion, led the Big Ten in digs per set, to the team? To do that, we simply tell `ggplot2` what our dataset is, what element of the data we want to make the bar chart out of (which is the aesthetic), and the geometry type (which is the geom). It looks like this:
 
-`ggplot() + geom_bar(data=huskers, aes(x=Season))` 
+`ggplot() + geom_bar(data=terps, aes(x=Season))` 
 
-We start with `ggplot()` which is creating a blank canvas for us to work in. The `geom_bar()` is the geometry -- the form the data will take. We will learn many geometries over the next several lessons. `huskers` is our data, `aes` means aesthetics, `x=Season` explicitly tells `ggplot2` that our x value -- our horizontal value -- is the Season field from the data. Why season? We want one bar per season, no? Put the season on the x axis is what that is saying.  And what do we get when we run that? 
+We start with `ggplot()` which is creating a blank canvas for us to work in. The `geom_bar()` is the geometry -- the form the data will take. We will learn many geometries over the next several lessons. `terps` is our data, `aes` means aesthetics, `x=Season` explicitly tells `ggplot2` that our x value -- our horizontal value -- is the Season field from the data. Why season? We want one bar per season, no? Put the season on the x axis is what that is saying.  And what do we get when we run that? 
 
 ```{r ggplot-bar1, exercise=TRUE, exercise.setup = "ggplot-load-data", message=FALSE}
-ggplot() + geom_bar(data=huskers, aes(x=Season))
+ggplot() + geom_bar(data=terps, aes(x=Season))
 ```
 ```{r ggplot-bar1-solution, exercise.reveal_solution = FALSE}
-ggplot() + geom_bar(data=huskers, aes(x=Season))
+ggplot() + geom_bar(data=terps, aes(x=Season))
 ```
 ```{r ggplot-bar1-check}
 grade_this_code()
@@ -184,17 +184,17 @@ You saw how it was done before. This just adds weight to the aes. The weight is 
 
 ```{r ggplot-bar2, exercise=TRUE, exercise.setup = "ggplot-load-data", message=FALSE}
 ggplot() + 
-  geom_bar(data=huskers, aes(x=Season, weight=??????????))
+  geom_bar(data=terps, aes(x=Season, weight=??????????))
 ```
 ```{r ggplot-bar2-solution, exercise.reveal_solution = FALSE}
 ggplot() + 
-  geom_bar(data=huskers, aes(x=Season, weight=digsperset))
+  geom_bar(data=terps, aes(x=Season, weight=digsperset))
 ```
 ```{r ggplot-bar2-check}
 grade_this_code()
 ```
 
-Now we get bars of different sizes, and you can clearly see a difference between 2020 and 2021 when Rodriguez joined the team. But does this tell a *clear* story? Debatable.
+Now we get bars of different sizes, and you can clearly see a difference between 2020 and 2021 when Gomillion joined the team. But does this tell a *clear* story? Debatable.
 
 Let's work on a different version of this to see if we can find a clearer story.
 
@@ -206,7 +206,7 @@ But what happens when that isn't quite the case.
 
 To change the order of the bars, we have to `reorder` it. With `reorder`, we first have to tell `ggplot` what we are reordering, and then we have to tell it HOW we are reordering it. So it's reorder(FIELD, SORTFIELD). 
 
-First, let's get a dataset of every Big Ten team in 2021 instead of just Nebraska. 
+First, let's get a dataset of every Big Ten team in 2021 instead of just Maryland 
 
 ```{r ggplot-bar3, exercise=TRUE, exercise.setup = "ggplot-load-data", message=FALSE}
 big10 <- seasons %>%
@@ -250,7 +250,7 @@ ggplot() +
 grade_this_code()
 ```
 
-Better. And look who is the top team in digs per set. Surprise surprise. 
+Better. And Maryland is third in the conference in digs per set. 
 
 ## One last trick: coord flip
 

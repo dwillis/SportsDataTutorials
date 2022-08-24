@@ -22,13 +22,13 @@ tutorial_options(exercise.completion=FALSE)
 
 ## The basics
 
-When looking at a linear model of your data, there's a measure you need to be aware of called residuals. The residual is the distance between what the model predicted and what the real outcome is. Take our model at the end of the correlation and regression chapter. Our model predicted Nebraska, given a 5 net yardage margin would beat Iowa by 1.96 points in 2020. They lost by 6. So our residual is -7.96. 
+When looking at a linear model of your data, there's a measure you need to be aware of called residuals. The residual is the distance between what the model predicted and what the real outcome is. Take our model at the end of the correlation and regression chapter. Our model predicted Maryland, given a -20 net yardage margin would lose to Indiana by 2.2 points. They lost by 16. So our residual is -13.8.
 
 Residuals can tell you several things, but most important is if a linear model the right model for your data. If the residuals appear to be random, then a linear model is appropriate. If they have a pattern, it means something else is going on in your data and a linear model isn't appropriate. 
 
 Residuals can also tell you who is underperforming and overperforming the model. And the more robust the model -- the better your r-squared value is -- the more meaningful that label of under or overperforming is. 
 
-Let's go back to our net yards model from the previous lesson. We need data from the 2020 college football season. **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
+Let's go back to our net yards model from the previous lesson. We need data from the 2021 college football season. **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
 
 ```{r echo=FALSE, class.output="bg-info", results="asis",  message=FALSE,  warning=FALSE}
 library(downloadthis)
@@ -201,7 +201,7 @@ grade_this_code()
 
 So from top to bottom:
 
-* Our min and max go from -65 to positive 73
+* Our min and max go from -64 to positive 73
 * Our adjusted R-squared is ... -0.0003596. Not much at all. 
 * Our p-value is ... 0.5244, which is more than than .05. 
 
