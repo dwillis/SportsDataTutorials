@@ -109,7 +109,7 @@ Let's do something more real and calculate the number of goals per game the Mary
 
 We're going to name the first variable Goals and the second variable Games. Set them equal to the numbers you got from the table, then divide Goals by Games.
 
-*Write the code necessary to create the variables and set it to the number of goals Maryland scored in the 2022 season and the number of games played.*
+*Write the code necessary to create the variables and set it to the number of goals Maryland scored in the 2022 season and the number of games played, then divide Goals by Games.*
 
 ```{r variables-one, exercise=TRUE}
 
@@ -128,6 +128,6 @@ Goals / Games
 grade_this_code()
 ```
 
-Using some rounding, the Terps scored 17.7 goals per game this season. So if you watched a game, chances are you were going to see the Good Guys score quite a bit. 
+If you watched a game, chances are you were going to see the Good Guys score quite a bit. 
 
 This isn't terribly useful just yet. If we wanted to know where the Terps ranked in college lacrosse, it would take us forever to look up every team and do this math. But as you now know, variables can hold anything we want to store in them. Soon enough, that Goals value will hold every team in college lacrosse, and Games will hold the games that every team played. The code doesn't change all that much, but we need to crawl before we walk.
