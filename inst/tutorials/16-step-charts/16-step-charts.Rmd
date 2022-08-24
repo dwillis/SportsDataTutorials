@@ -25,11 +25,11 @@ Step charts are **a method of showing progress** toward a total number They comb
 
 There's great examples out there. First is the Washignton Post looking at [Lebron passing Jordan's career point total](https://www.washingtonpost.com/graphics/sports/lebron-james-michael-jordan-nba-scoring-list/?utm_term=.481074150849). Another is John Burn-Murdoch's work at the Financial Times (which is paywalled) about soccer stars. [Here's an example of his work outside the paywall](http://johnburnmurdoch.github.io/projects/goal-lines/CL/).
 
-To replicate this, we need cumulative data -- data that is the running total of data at a given point. So think of it this way -- Nebraska scores 50 points in a basketball game and then 50 more the next, their cumulative total at two games is 100 points. 
+To replicate this, we need cumulative data -- data that is the running total of data at a given point. So think of it this way -- Maryland scores 50 points in a basketball game and then 50 more the next, their cumulative total at two games is 100 points. 
 
 Step charts can be used for all kinds of things -- showing how a player's career has evolved over time, how a team fares over a season, or franchise history. Let's walk through an example. 
 
-Let's look at Fred Hoiberg's team last season. **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
+Let's look at the Terps last season. **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
 
 ```{r echo=FALSE, class.output="bg-info", results="asis",  message=FALSE,  warning=FALSE}
 library(downloadthis)
@@ -154,19 +154,19 @@ ggplot() + geom_step(data=bigdiff, aes(x=Date, y=CumDiff, group=Team, color=Team
 grade_this_code()
 ```
 
-From this, we can see a handful of teams in the Big Ten had negative point differentials last season. But which is which? And which one is Nebraska? Too many colors and it's too hard to tell. This is a lesson: *We use color to highlight.* When everything is a color, nothing is highlighted. We use color sparingly.
+From this, we can see a handful of teams in the Big Ten had negative point differentials last season. But which is which? And which one is Maryland? Too many colors and it's too hard to tell. This is a lesson: *We use color to highlight.* When everything is a color, nothing is highlighted. We use color sparingly.
 
 ### Exercise 5: Using color the right way
 
-How do we sort this out? Layering and annotations. We've used layering before. Annotations, while new, will make sense in a minute. First, let's pick three teams to highlight -- Nebraska and the co-champions, Illinois and Wisconsin. 
+How do we sort this out? Layering and annotations. We've used layering before. Annotations, while new, will make sense in a minute. First, let's pick three teams to highlight -- Maryland and the co-champions, Illinois and Wisconsin. 
 
 ```{r step5, exercise=TRUE, exercise.setup = "step-load-data", message=FALSE}
-nu <- bigdiff %>% filter(Team == "Nebraska")
+md <- bigdiff %>% filter(Team == "Maryland")
 ws <- bigdiff %>% filter(Team == "????????")
 il <- bigdiff %>% filter(Team == "????????")
 ```
 ```{r step5-solution, exercise.reveal_solution = FALSE}
-nu <- bigdiff %>% filter(Team == "Nebraska")
+md <- bigdiff %>% filter(Team == "Maryland")
 ws <- bigdiff %>% filter(Team == "Wisconsin")
 il <- bigdiff %>% filter(Team == "Illinois")
 ```
@@ -176,7 +176,7 @@ grade_this_code()
 
 Let's introduce a couple of new things here. First, note when I take the color OUT of the aesthetic, the legend disappears. 
 
-Our chart is going to layer bigdiff, nu and il in that order. We put bigdiff first because order matters and the first geom goes on the bottom.
+Our chart is going to layer bigdiff, md and il in that order. We put bigdiff first because order matters and the first geom goes on the bottom.
 
 The second thing I'm going to add is the annotation layer. In this case, I am adding a text annotation layer, and I can specify where by adding in a x and a y value where I want to put it. This takes some finesse -- trial and error. You use the x and y axis values, guesstimate where you want the center of the words to be and enter those numbers into the x and y values. 
 
@@ -188,7 +188,7 @@ ggplot() +
   geom_step(data=??, aes(x=Date, y=CumDiff, group=Team), color="red") + 
   geom_step(data=??, aes(x=Date, y=CumDiff, group=Team), color="orange") +
   geom_step(data=??, aes(x=Date, y=CumDiff, group=Team), color="black") +
-  annotate("text", x=(as.Date("2022-02-10")), y=-70, label="Nebraska") +
+  annotate("text", x=(as.Date("2022-02-10")), y=-70, label="Maryland") +
   annotate("text", x=(as.Date("2022-03-01")), y=330, label="Illinois") +
   labs(
     x="YOU SHOULD CHANGE THIS TO WHAT THE X AXIS IS", 
@@ -201,18 +201,18 @@ ggplot() +
 ```{r step6-solution, exercise.reveal_solution = FALSE}
 ggplot() + 
   geom_step(data=bigdiff, aes(x=Date, y=CumDiff, group=Team), color="light grey") +
-  geom_step(data=nu, aes(x=Date, y=CumDiff, group=Team), color="red") + 
+  geom_step(data=md, aes(x=Date, y=CumDiff, group=Team), color="red") + 
   geom_step(data=il, aes(x=Date, y=CumDiff, group=Team), color="orange") +
   geom_step(data=ws, aes(x=Date, y=CumDiff, group=Team), color="black") +
-  annotate("text", x=(as.Date("2022-02-10")), y=-100, label="Nebraska") +
+  annotate("text", x=(as.Date("2022-02-10")), y=-50, label="Maryland") +
   annotate("text", x=(as.Date("2022-03-01")), y=265, label="Illinois") +
   annotate("text", x=(as.Date("2022-03-01")), y=100, label="Wisconsin") +
   labs(
     x="Date", 
     y="Cumulative Point Differential", 
-    title="Nebraska's season long slide", 
-    subtitle="The Huskers started solidly but ended up being outscored by more than any other Big Ten team.", 
-    caption="Source: Sports-Reference.com | By Matt Waite") +
+    title="Maryland lagged behind Big Ten leaders", 
+    subtitle="The Terps rarely strayed from a small scoring advantage", 
+    caption="Source: Sports-Reference.com | By Derek Willis") +
   theme_minimal()
 ```
 ```{r step6-check}

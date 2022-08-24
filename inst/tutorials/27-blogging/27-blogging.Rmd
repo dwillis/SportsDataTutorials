@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = FALSE)
 tutorial_options(exercise.completion=FALSE)
 ```
 
-# Building your own blog with blogdown
+# Building your own blog with Quarto
 
 ## The basics
 
@@ -72,15 +72,15 @@ project:
   type: website
 
 website:
-  title: "Matt Waite's Collection of Miscellany"
+  title: "Derek Willis' Collection of Miscellany"
   description: "A blog about random fiddling with code and data."
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/mattwaite
+        href: https://github.com/dwillis
       - icon: twitter
-        href: https://twitter.com/mattwaite
+        href: https://twitter.com/derekwillis
   favicon: logo.png
   
 format:
@@ -219,4 +219,4 @@ This is where you will commit files to your repository. GitHub is a two-step pro
 knitr::include_graphics(rep("images/blog13.png"))
 ```
 
-In a few minutes, you should be able to go to username.github.io in a browser and you'll see your site. [Here's mine](http://mattwaite.github.io/).
+In a few minutes, you should be able to go to username.github.io in a browser and you'll see your site. [Here's mine](http://dwillis.github.io/).
