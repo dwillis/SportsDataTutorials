@@ -26,7 +26,7 @@ Sometimes long data needs to be wide, and sometimes wide data needs to be long. 
 
 You are soon going to discover that long before you can visualize data, **you need to have it in a form that the visualization library can deal with**. One of the ways that isn't immediately obvious is **how your data is cast**. Most of the data you will encounter will be **wide -- each row will represent a single entity with multiple measures for that entity**. So think of states. Your row of your dataset could have the state name, population, average life expectancy and other demographic data. 
 
-But what if your visualization library needs one row for each measure? So state, data type and the data. Nebraska, Population, 1,929,000. That's one row. Then the next row is Nebraska, Average Life Expectancy, 76. That's the next row. That's where recasting your data comes in. 
+But what if your visualization library needs one row for each measure? So state, data type and the data. Maryland, Population, 6,165,000. That's one row. Then the next row is Maryland, Average Life Expectancy, 78. That's the next row. That's where recasting your data comes in. 
 
 We can use a library called `tidyr` to `pivot_longer` or `pivot_wider` the data, depending on what we need. We'll use a dataset of NBA offensive ratings. We're going to try and answer some questions about offensive improvement. **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
 
