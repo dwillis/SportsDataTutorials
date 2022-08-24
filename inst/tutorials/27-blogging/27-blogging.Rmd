@@ -103,7 +103,7 @@ Under the files tab on the lower right, you'll see a folder named posts. In ther
 To create a post, you're going to first create a folder for it. **The folder name matters because it's going to be part of your url.** For this to work your folder name has to do a couple of things: 
 
 * Contain only lowercase letters and dashes instead of spaces. So My Awesome Post will not work. It should be my-awesome-post. 
-* Contain words that are in your post, and would be something people would search for. If your post is about Nebraska women's run into the NCAA Tournament, make sure your post title and folder name contains those words. 
+* Contain words that are in your post, and would be something people would search for. If your post is about Maryland women's run into the NCAA Tournament, make sure your post title and folder name contains those words. 
 * In other words, **you need to think about what your post is about before you make this folder**. Can you change it later? Yes. But the sooner you start focusing on a topic the better. 
 
 After you have created the folder, go to the button next to the create folder button and create a Quarto Document. Name that document index.qmd. **DO NOT NAME IT CAPITAL I INDEX. IT'S LOWER CASE I.**
