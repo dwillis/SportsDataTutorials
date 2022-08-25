@@ -23,7 +23,7 @@ A line chart, as we learned, shows change over time, with the date on the x-axis
 
 But with some fiddling with lines and points, you can create a new chart type that does show change over two time periods quite well: A slope chart. 
 
-Think of a slope chart like the meme you see online: How is started vs how it's going. For example, did you know Nebraska had the second most explosive offense in the Big Ten last season? 
+Think of a slope chart like the meme you see online: How is started vs how it's going. For example, did you know Nebraska had the second most explosive offense in the Big Ten last season? Three-win Nebraska?
 
 It's true. I'll show you. You're going to need a dataset I created that has two seasons of Yards Per Play data on offense. This is the total yards gained divided by the total number of plays. For each team, there's two rows -- one in 2020 and one in 2021. 
 
@@ -66,6 +66,7 @@ yardsperplay <- read_csv("http://mattwaite.github.io/sportsdatafiles/footballslo
 nu <- yardsperplay %>% filter(Team == "Nebraska")
 oh <- yardsperplay %>% filter(Team == "Ohio State")
 mi <- yardsperplay %>% filter(Team == "Michigan")
+md <- yardsperplay %>% filter(Team == "Maryland")
 
 big <- yardsperplay %>% 
   filter(Conference == "Big Ten Conference")
@@ -144,6 +145,7 @@ mi <- yardsperplay %>% filter(Team == "????????")
 nu <- yardsperplay %>% filter(Team == "Nebraska")
 oh <- yardsperplay %>% filter(Team == "Ohio State")
 mi <- yardsperplay %>% filter(Team == "Michigan")
+md <- yardsperplay %>% filter(Team == "Maryland")
 ```
 ```{r slope3-check}
 grade_this_code()
@@ -153,29 +155,33 @@ Now that we have these schools isolated, we can layer them in.
 
 ### Exercise 4: Layering with color
 
-Adding in layers in ggplot is easy, we just have to be aware of ordering and color. Putting a black line on a black line will not do much. So we're going to add our Big Ten points and lines first, then, we'll layer in the other schools. For each school, we'll add two geoms -- the point and the line. The aes will be the same as the Big Ten with one exception -- the color. We'll use black for Ohio State because we're red, screw them. 
+Adding in layers in ggplot is easy, we just have to be aware of ordering and color. Putting a black line on a black line will not do much. So we're going to add our Big Ten points and lines first, then, we'll layer in the other schools. For each school, we'll add two geoms -- the point and the line. The aes will be the same as the Big Ten with one exception -- the color. We'll use black for Ohio State because, well, Maryland and Nebraska are more red. 
 
 ```{r slope4, exercise=TRUE, exercise.setup = "slope-load-data", message=FALSE}
 ggplot() + 
   geom_line(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
   geom_point(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
-  geom_line(data=??, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
-  geom_point(data=??, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_line(data=??, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
+  geom_point(data=??, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
   geom_line(data=??, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_point(data=??, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_line(data=??, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
-  geom_point(data=??, aes(x=Season, y=YardsPerPlay, group=Team), color="blue")
+  geom_point(data=??, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
+  geom_line(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_point(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red")
 ```
 ```{r slope4-solution, exercise.reveal_solution = FALSE}
 ggplot() + 
   geom_line(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
   geom_point(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
-  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
-  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
+  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
   geom_line(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_point(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_line(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
-  geom_point(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue")
+  geom_point(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
+  geom_line(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_point(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red")
 ```
 ```{r slope4-check}
 grade_this_code()
@@ -193,24 +199,28 @@ We can do that with some clever manipulations of the x axis. In ggplot, there ar
 ggplot() + 
   geom_line(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
   geom_point(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
-  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
-  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
+  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
   geom_line(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_point(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_line(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
-  geom_point(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") + 
+  geom_point(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
+  geom_line(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_point(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
   scale_x_continuous(breaks=c(????, ????), limits=c(2019.5,2021.5)) 
 ```
 ```{r slope5-solution, exercise.reveal_solution = FALSE}
 ggplot() + 
   geom_line(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
   geom_point(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
-  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
-  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
+  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
   geom_line(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_point(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_line(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
-  geom_point(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") + 
+  geom_point(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
+  geom_line(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_point(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
   scale_x_continuous(breaks=c(2020, 2021), limits=c(2019.5,2021.5)) 
 ```
 ```{r slope5-check}
@@ -230,18 +240,22 @@ To cap it off, we'll add `theme_minimal()` at the end because we want to remove 
 ggplot() + 
   geom_line(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
   geom_point(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
-  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
-  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
+  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
   geom_line(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_point(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_line(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
   geom_point(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
+  geom_line(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_point(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
   geom_text(data=nu %>% filter(Season == max(??????)), aes(x=Season + .2, y=YardsPerPlay+.1, group=Team, label=????)) + 
   geom_text(data=nu %>% filter(Season == min(??????)), aes(x=Season - .2, y=YardsPerPlay, group=Team, label=????)) + 
   geom_text(data=mi %>% filter(Season == max(Season)), aes(x=Season + .2, y=YardsPerPlay, group=Team, label=Team)) + 
   geom_text(data=mi %>% filter(Season == min(Season)), aes(x=Season - .2, y=YardsPerPlay, group=Team, label=Team)) + 
   geom_text(data=oh %>% filter(Season == max(Season)), aes(x=Season + .2, y=YardsPerPlay, group=Team, label=Team)) + 
   geom_text(data=oh %>% filter(Season == min(Season)), aes(x=Season - .2, y=YardsPerPlay, group=Team, label=Team)) + 
+  geom_text(data=md %>% filter(Season == max(Season)), aes(x=Season + .2, y=YardsPerPlay, group=Team, label=Team)) + 
+  geom_text(data=md %>% filter(Season == min(Season)), aes(x=Season - .2, y=YardsPerPlay, group=Team, label=Team)) + 
   scale_x_continuous(breaks=c(2020, 2021), limits=c(2019.5,2021.5)) +
   theme_minimal()
 ```
@@ -249,18 +263,22 @@ ggplot() +
 ggplot() + 
   geom_line(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
   geom_point(data=big, aes(x=Season, y=YardsPerPlay, group=Team), color="grey") +
-  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
-  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_line(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
+  geom_point(data=nu, aes(x=Season, y=YardsPerPlay, group=Team), color="red3") +
   geom_line(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_point(data=oh, aes(x=Season, y=YardsPerPlay, group=Team), color="black") +
   geom_line(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
   geom_point(data=mi, aes(x=Season, y=YardsPerPlay, group=Team), color="blue") +
+  geom_line(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
+  geom_point(data=md, aes(x=Season, y=YardsPerPlay, group=Team), color="red") +
   geom_text(data=nu %>% filter(Season == max(Season)), aes(x=Season + .2, y=YardsPerPlay+.1, group=Team, label=Team)) + 
   geom_text(data=nu %>% filter(Season == min(Season)), aes(x=Season - .2, y=YardsPerPlay, group=Team, label=Team)) + 
   geom_text(data=mi %>% filter(Season == max(Season)), aes(x=Season + .2, y=YardsPerPlay, group=Team, label=Team)) + 
   geom_text(data=mi %>% filter(Season == min(Season)), aes(x=Season - .2, y=YardsPerPlay, group=Team, label=Team)) + 
   geom_text(data=oh %>% filter(Season == max(Season)), aes(x=Season + .2, y=YardsPerPlay, group=Team, label=Team)) + 
   geom_text(data=oh %>% filter(Season == min(Season)), aes(x=Season - .2, y=YardsPerPlay, group=Team, label=Team)) + 
+  geom_text(data=md %>% filter(Season == max(Season)), aes(x=Season + .2, y=YardsPerPlay, group=Team, label=Team)) + 
+  geom_text(data=md %>% filter(Season == min(Season)), aes(x=Season - .2, y=YardsPerPlay, group=Team, label=Team)) + 
   scale_x_continuous(breaks=c(2020, 2021), limits=c(2019.5,2021.5)) +
   theme_minimal()
 ```
@@ -268,4 +286,4 @@ ggplot() +
 grade_this_code()
 ```
 
-And there you have it. A clean and clear slope chart showing how infuriating last season was. 
+And there you have it. A clean and clear slope chart showing how infuriating last season was - for both Nebraska and Maryland.
