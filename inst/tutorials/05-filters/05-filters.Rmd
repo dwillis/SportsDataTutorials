@@ -11,7 +11,7 @@ description: >
 
 ```{r setup, include=FALSE}
 library(learnr)
-#library(gradethis)
+library(gradethis)
 library(tidyverse)
 library(glue)
 knitr::opts_chunk$set(echo = FALSE)

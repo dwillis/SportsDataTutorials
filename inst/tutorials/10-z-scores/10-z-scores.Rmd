@@ -23,7 +23,6 @@ tutorial_options(exercise.completion=FALSE)
 ## The basics
 
 Z-scores are a handy way to standardize numbers so you can compare things across groupings or time. In this class, we may want to compare teams by year, or era. We can use z-scores to answer questions like who was the greatest X of all time, because a z-score can put them in context to their era. 
-
 A z-score is a measure of how far a particular stat is from the mean. It's measured in standard deviations from that mean. A standard deviation is a measure of how much variation -- how spread out -- numbers are in a data set. What it means here, with regards to z-scores, is that zero is perfectly average. If it's 1, it's one standard deviation above the mean, and 34 percent of all cases are between 0 and 1. 
 
 ```{r, echo=FALSE}
@@ -32,7 +31,7 @@ knitr::include_graphics(rep("images/simulations2.png"))
 
 If you think of the normal distribution, it means that 84.3 percent of all case are below that 1. If it were -1, it would mean the number is one standard deviation below the mean, and 84.3 percent of cases would be above that -1. So if you have numbers with z-scores of 3 or even 4, that means that number is waaaaaay above the mean.  
 
-So let's use last year's Nebraska volleyball team, which if haven't been paying attention to current events, was very good at volleyball. A few points from legendary. But were they the best Husker team since 2018, when they were also the national semifinalist? 
+So let's use last year's Maryland women's basketball team, which if haven't been paying attention to current events, was very talented but had a few struggles.
 
 ## Calculating a Z score in R
 
@@ -43,7 +42,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "http://mattwaite.github.io/sportsdatafiles/volleyball1812.csv",
+  link = "https://dwillis.github.io/sportsdatafiles/wbb_game_logs_2022.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -70,30 +69,35 @@ grade_this_code()
 And load the data.
 
 ```{r zscore-load-data, message=FALSE, warning=FALSE, results=FALSE}
-seasons <- read_csv("http://mattwaite.github.io/sportsdatafiles/volleyball1821.csv")
+gamelogs <- read_csv("https://dwillis.github.io/sportsdatafiles/wbb_game_logs_2022.csv")
 
-perset <- seasons %>% 
-  mutate(
-    killsperset = Kills/S,
-    digsperset = Digs/S,
-    acesperset = Aces/S
-  ) %>%
-  select(Season, Institution, Conference, killsperset, digsperset, acesperset)
+teamquality <- gamelogs %>% 
+  select(conference, team, fg_pct, trb, opp_fg_pct, opp_trb)
 
-teamzscore <- perset %>%
-  group_by(Season) %>% 
+teamtotals <- teamquality %>% 
+  group_by(conference, team) %>% 
+  summarise(
+    FGAvg = mean(fg_pct), 
+    ReboundAvg = mean(trb), 
+    OppFGAvg = mean(opp_fg_pct),
+    OffRebAvg = mean(opp_trb)
+    )
+
+teamzscore <- teamtotals %>% 
   mutate(
-    killszscore = as.numeric(scale(killsperset, center = TRUE, scale = TRUE)),
-    aceszscore = as.numeric(scale(acesperset, center = TRUE, scale = TRUE)),
-    digszscore = as.numeric(scale(digsperset, center = TRUE, scale = TRUE)),
-    TotalZscore = killszscore + aceszscore + digszscore
-  ) %>% ungroup() 
+    FGzscore = as.numeric(scale(FGAvg, center = TRUE, scale = TRUE)),
+    RebZscore = as.numeric(scale(ReboundAvg, center = TRUE, scale = TRUE)),
+    OppZscore = as.numeric(scale(OppFGAvg, center = TRUE, scale = TRUE)) * -1,
+    OppRebZScore = as.numeric(scale(OffRebAvg, center = TRUE, scale = TRUE)) * -1,
+    TotalZscore = FGzscore + RebZscore + OppZscore + OppRebZScore
+  )
+
 ```
 ```{r zscore-load-data-exercise, exercise = TRUE}
-seasons <- read_csv("http://mattwaite.github.io/sportsdatafiles/volleyball1821.csv")
+seasons <- read_csv("https://dwillis.github.io/sportsdatafiles/wbb_game_logs_2022.csv")
 ```
 ```{r zscore-load-data-exercise-solution}
-seasons <- read_csv("http://mattwaite.github.io/sportsdatafiles/volleyball1821.csv")
+seasons <- read_csv("https://dwillis.github.io/sportsdatafiles/wbb_game_logs_2022.csv")
 ```
 ```{r zscore-load-data-exercise-check}
 grade_this_code()
