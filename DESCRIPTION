@@ -17,5 +17,5 @@ Suggests:
 Imports: 
     gradethis (>= 0.2.3.9001)
 Remotes:  
-    rstudio/gradethis
+    rstudio/gradethis,
     rstudio/learnr
