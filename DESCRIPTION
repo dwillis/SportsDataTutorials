@@ -1,12 +1,12 @@
 Package: SportsDataTutorials
-Title: The Companion Tutorials To UNL's SPMC 350 Sports Data Analysis Course
+Title: The Companion Tutorials To UMD's JOUR 479X Sports Data Analysis Course
 Version: 0.0.1.9000
 Authors@R: 
-    person(given = "Matt",
-           family = "Waite",
+    person(given = "Derek",
+           family = "Willis",
            role = c("aut", "cre"),
-           email = "matt.waite@unl.edu")
-Description: Walks students through the skills needed for UNL's SPMC 350 course.
+           email = "dpwillis@umd.edu")
+Description: Walks students through the skills needed for UMD's JOUR 479X course.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -18,3 +18,4 @@ Imports:
     gradethis (>= 0.2.3.9001)
 Remotes:  
     rstudio/gradethis
+    rstudio/learnr
