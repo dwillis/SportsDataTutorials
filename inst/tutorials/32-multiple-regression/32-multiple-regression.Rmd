@@ -282,13 +282,13 @@ grade_this_code()
 Plug and chug:
 
 ```{r multiple10, exercise=TRUE, exercise.setup = "multiple-load-data", message=FALSE}
-(0.0551813*80.9) + (3.8548574*-0.417) + (-3.8991399*5.42) + (3.8612863*6.5) + 0.5826970
+(0.0551813*39.30769) + (3.8548574*-0.5384615) + (-3.8991399*5.669231) + (3.8612863*6.238462) + 0.5826970
 ```
 ```{r multiple10-solution, exercise.reveal_solution = FALSE}
-(0.0551813*80.9) + (3.8548574*-0.417) + (-3.8991399*5.42) + (3.8612863*6.5) + 0.5826970
+(0.0551813*39.30769) + (3.8548574*-0.5384615) + (-3.8991399*5.669231) + (3.8612863*6.238462) + 0.5826970
 ```
 ```{r multiple10-check}
 grade_this_code()
 ```
 
-By this model, it predicted we would average outscoring our opponents by a touchdown over the season. Reality? We outscored them by 5.25 on average. And we won three games. Thanks Northwestern!
+By this model, it predicted we would average outscoring our opponents by 2.65 points over the season. Reality? We were outscored by slightly more than a point. Thanks, Michigan!
