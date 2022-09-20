@@ -247,14 +247,14 @@ Now it's just plug and chug. It's the estimate times the actual number of that t
 grade_this_code()
 ```
 
-So a team with those numbers is going to average scoring almost 19 more points per game than their opponent. Sound like Ohio State in the last three years?
+So a team with those numbers is going to average scoring almost 19 more points per game than their opponent. Sound like Ohio State recently?
 
-How does that compare to Nebraska this season? 
+How does that compare to Maryland last season? 
 
 ```{r multiple9, exercise=TRUE, exercise.setup = "multiple-load-data", message=FALSE}
 difflogs %>% 
   filter(
-    Team == "Nebraska" & Season == 2021
+    Team == "Maryland" & Season == 2021
     ) %>% 
   summarise(
     meanNetYards = mean(NetYards),
@@ -266,7 +266,7 @@ difflogs %>%
 ```{r multiple9-solution, exercise.reveal_solution = FALSE}
 difflogs %>% 
   filter(
-    Team == "Nebraska" & Season == 2021
+    Team == "Maryland" & Season == 2021
     ) %>% 
   summarise(
     meanNetYards = mean(NetYards),
