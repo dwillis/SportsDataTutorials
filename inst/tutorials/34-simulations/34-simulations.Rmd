@@ -21,7 +21,7 @@ tutorial_options(exercise.completion=FALSE)
 
 ## The basics
 
-In the 2017-2018 season, James Palmer Jr. took 139 three point attempts and made 43 of them for a .309 shooting percentage. A few weeks into the next season, he was 7 for 39 -- a paltry .179. 
+In the 2018-2019 season, Eric Ayala took 128 three point attempts and made 52 of them for a .406 shooting percentage. A few weeks into the next season, he was 8 for 32 -- a paltry .250. 
 
 Is something wrong or is this just bad luck? 
 
@@ -31,21 +31,21 @@ Luck is something that comes up a lot in sports. Is a team unlucky? Or a player?
 knitr::include_graphics(rep("images/simulations2.png"))
 ```
 
-Let's simulate 39 three point attempts 1000 times with his season long shooting percentage and see if this could just be random chance or something else. 
+Let's simulate 32 three point attempts 1000 times with his season long shooting percentage and see if this could just be random chance or something else. 
 
-We do this using a base R function called `rbinom` or binomial distribution. So what that means is there's a normally distrubuted chance that James Palmer Jr. is going to shoot above and below his career three point shooting percentage. If we randomly assign values in that distribution 1000 times, how many times will it come up 7, like this example?  
+We do this using a base R function called `rbinom` or binomial distribution. So what that means is there's a normally distrubuted chance that Eric Ayala is going to shoot above and below his career three point shooting percentage. If we randomly assign values in that distribution 1000 times, how many times will it come up 8, like this example?  
 
 ```{r sim1, exercise=TRUE, message=FALSE}
 set.seed(1234)
 
-simulations <- rbinom(n = 1000, size = 39, prob = .309)
+simulations <- rbinom(n = 1000, size = 32, prob = .406)
 
 table(simulations)
 ```
 ```{r sim1-solution, exercise.reveal_solution = FALSE}
 set.seed(1234)
 
-simulations <- rbinom(n = 1000, size = 39, prob = .309)
+simulations <- rbinom(n = 1000, size = 32, prob = .406)
 
 table(simulations)
 ```
@@ -59,23 +59,23 @@ How do we read this? The first row and the second row form a pair. The top row i
 knitr::include_graphics(rep("images/simulations1.png"))
 ```
 
-So what we see is given his season long shooting percentage, it's not out of the realm of randomness that with just 39 attempts for Palmer, he's only hit only 7. In 1000 simulations, it comes up 35 times. Is he below where he should be? Yes. Will he likely improve and soon? Unless something is very wrong, yes. And indeed, by the end of the season, he finished with a .313 shooting percentage from 3 point range. So we can say he was just unlucky. 
+So what we see is given his season long shooting percentage, it's not out of the realm of randomness that with just 32 attempts for Ayala, he's only hit only 8. In 1000 simulations, it comes up 34 times. Is he below where he should be? Yes. Will he likely improve? Unless something is very wrong, yes. By the end of the 2019-20 season, he finished with a .274 shooting percentage from 3 point range, which is slightly better but still off his freshman performance. So can we say he was just unlucky? 
 
 ## Cold streaks
 
-During the Western Illinois game in the 2018-2019 season, the team, shooting .329 on the season from behind the arc, went 0-15 in the second half. How strange is that? 
+During the Iowa game in the 2021-22 season, the team, which shot .326 on the season from behind the arc, made 14 of 26 threes. How strange is that? 
 
 ```{r sim2, exercise=TRUE, message=FALSE}
 set.seed(1234)
 
-simulations <- rbinom(n = 1000, size = 15, prob = .329)
+simulations <- rbinom(n = 1000, size = 26, prob = .326)
 
 table(simulations)
 ```
 ```{r sim2-solution, exercise.reveal_solution = FALSE}
 set.seed(1234)
 
-simulations <- rbinom(n = 1000, size = 15, prob = .329)
+simulations <- rbinom(n = 1000, size = 26, prob = .326)
 
 table(simulations)
 ```
@@ -83,4 +83,4 @@ table(simulations)
 grade_this_code()
 ```
 
-Short answer: Really weird. If you simulate 15 threes 1000 times, sometimes you'll see them miss all of them, but only a few times -- five times, in this case. Most of the time, the team won't go 0-15 even once. So going ice cold is not totally out of the realm of random chance, but it's highly unlikely.
+Short answer: Kind of unlikely! If you simulate 26 threes 1000 times, sometimes you'll see them make a majority of them, but in this case it's just 25 times out of 1,000. Hitting 15 or 16 of them would have been extremely unlikely. Having great shooting nights is not totally out of the realm of random chance, but 14-26 is pretty unlikely for a team that's shooting 32.6% on the season.
