@@ -1,5 +1,5 @@
 ---
-title: "Lesson 17: Step charts"
+title: "Lesson 19: Step charts"
 output: 
   learnr::tutorial:
     progressive: true
@@ -71,7 +71,7 @@ difflogs <- logs %>%
   mutate(CumDiff = cumsum(Differential))
 
 bigdiff <- difflogs %>% filter(Conference == "Big Ten")
-nu <- bigdiff %>% filter(Team == "Nebraska")
+md <- bigdiff %>% filter(Team == "Maryland")
 ws <- bigdiff %>% filter(Team == "Wisconsin")
 il <- bigdiff %>% filter(Team == "Illinois")
 ```
@@ -176,7 +176,7 @@ grade_this_code()
 
 Let's introduce a couple of new things here. First, note when I take the color OUT of the aesthetic, the legend disappears. 
 
-Our chart is going to layer bigdiff, md and il in that order. We put bigdiff first because order matters and the first geom goes on the bottom.
+Our chart is going to layer bigdiff, md, il and ws in that order. We put bigdiff first because order matters and the first geom goes on the bottom.
 
 The second thing I'm going to add is the annotation layer. In this case, I am adding a text annotation layer, and I can specify where by adding in a x and a y value where I want to put it. This takes some finesse -- trial and error. You use the x and y axis values, guesstimate where you want the center of the words to be and enter those numbers into the x and y values. 
 

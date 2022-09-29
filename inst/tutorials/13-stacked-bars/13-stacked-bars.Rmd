@@ -23,7 +23,7 @@ tutorial_options(exercise.completion=FALSE)
 
 One of the elements of data visualization excellence is **inviting comparison**. Often that comes in showing **what proportion a thing is in relation to the whole thing**. With bar charts, we're showing magnitude of the whole thing. If we have information about the parts of the whole, **we can stack them on top of each other to compare them, showing both the whole and the components**. And it's a simple change to what we've already done. 
 
-We're going to use a dataset of college football games from this season. **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
+We're going to use a dataset of college football games from last season. **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
 
 ```{r echo=FALSE, class.output="bg-info", results="asis",  message=FALSE,  warning=FALSE}
 library(downloadthis)
@@ -100,7 +100,7 @@ So to make this chart, we have to just add one thing to a bar chart like we did 
 
 ### Exercise 1: Preparing your data
 
-We have game data, and we need season data. To get that, we need to do some group by and sum work. And since we're only interested in the Big Ten, we have some filtering to do too. For this, we're going to measure offensive production by rushing yards and passing yards. So if we have all the games a team played, and the rushing and passing yards for each of those games, what we need to do to get the season totals is just add them up. We'll put all of that into a new dataframe called big
+We have game data, and we need season data. To get that, we need to do some group by and sum work. And since we're only interested in the Big Ten, we have some filtering to do, too. For this, we're going to measure offensive production by rushing yards and passing yards. So if we have all the games a team played, and the rushing and passing yards for each of those games, what we need to do to get the season totals is just add them up. We'll put all of that into a new dataframe called big:
 
 ```{r stacked-big, exercise=TRUE, exercise.setup = "stacked-load-data", message=FALSE}
 ??? <- football %>% 

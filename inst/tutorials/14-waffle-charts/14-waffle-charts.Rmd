@@ -1,5 +1,5 @@
 ---
-title: "Lesson 15: Waffle charts"
+title: "Lesson 14: Waffle charts"
 output: 
   learnr::tutorial:
     progressive: true
@@ -72,7 +72,7 @@ So what does the breakdown of the night look like?
 
 ### Exercise 1: Make a waffle chart
 
-The waffle library can break this down in a way that's easier on the eyes than a pie chart. We call the `waffle` function, add the data for Nebraska, specify the number of rows (10 is a good start), give it a title and an x value label, and to clean up a quirk of the library, we've got to specify colors. 
+The waffle library can break this down in a way that's easier on the eyes than a pie chart. We call the `waffle` function, add the data for Maryland, specify the number of rows (10 is a good start), give it a title and an x value label, and to clean up a quirk of the library, we've got to specify colors. 
 
 ```{r waffle, exercise=TRUE, exercise.setup = "waffle-load-data", message=FALSE}
 waffle(
@@ -96,7 +96,7 @@ waffle(
 grade_this_code()
 ```
 
-Or, we could make this two teams in the same chart by just changing the vector up. Nebraska had 255 yards passing that night. Michigan State had 183.
+Or, we could make this two teams in the same chart by just changing the vector up. Maryland had 275 yards passing that night. Virginia Tech had 137.
 
 ### Exercise 2: Two teams, one waffle
 
@@ -126,7 +126,7 @@ waffle(
 grade_this_code()
 ```
 
-No matter how you look at this game, it just comes back to heartache.
+No matter how you look at this game, it just comes back to heartache - for the Hokies.
 
 ## Two waffles = waffle iron
 
@@ -174,11 +174,11 @@ iron(
 grade_this_code()
 ```
 
-What do you notice about this chart? Notice how the squares aren't the same size? Well, Nebraska out-gained Michigan State by a long way ... AND LOST. So the squares aren't the same size because the numbers aren't the same. 
+What do you notice about this chart? Notice how the squares aren't the same size? Well, Maryland out-gained Virginia Tech by a long way. So the squares aren't the same size because the numbers aren't the same. 
 
 ### Exercise 4: Adding padding
 
-We can fix the uneven box sizes by adding an unnamed padding number so the number of yards add up to the same thing. Maryland out-gained Virginia Tech by a long way. So the squares aren't the same size because the numbers aren't the same. We can fix that by adding an unnamed padding number so the number of yards add up to the same thing. Let's make the total for everyone be 481, Maryland's total yards of offense. So to do that, we need to add a padding of 222 to Virginia Tech. REMEMBER: Don't name it or it'll show up in the legend.
+We can fix that by adding an unnamed padding number so the number of yards add up to the same thing. Let's make the total for everyone be 481, Maryland's total yards of offense. So to do that, we need to add a padding of 222 to Virginia Tech. REMEMBER: Don't name it or it'll show up in the legend.
 
 Now, in our waffle iron, if we don't give that padding a color, we'll get an error. So we need to make it white. Which, given our white background, means it will disappear.
 
