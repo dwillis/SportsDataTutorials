@@ -114,9 +114,9 @@ playersselected <- players %>%
   na.omit()
 ```
 ```{r cluster1-solution, exercise.reveal_solution = FALSE}
-playersscaled <- playersselected %>% 
-  select(mp, fg_pct, fg3m_pct, ast, tov, pts) %>% 
-  mutate_all(scale) %>% 
+playersselected <- players %>% 
+  filter(mp>0) %>% filter(position == "G") %>% 
+  select(player, team, position, mp, fg_pct, fg3m_pct, ast, tov, pts) %>% 
   na.omit()
 ```
 ```{r cluster1-check}
