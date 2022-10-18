@@ -225,7 +225,7 @@ Let's use Madi Kubik as an example. She's 6'3" on the roster, or 75 inches.
 
 y = 21.003 * 75 - 1348.654 or 226.5 kills. 
 
-How many wins did Kubik have last seaon? 412. 
+How many kills did Kubik have last season? 412. 
 
 If we built a model to predict kills based purely on height, we missed Kubik's actual results by almost a factor of 2. Not great. 
 
