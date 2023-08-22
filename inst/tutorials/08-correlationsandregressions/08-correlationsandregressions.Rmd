@@ -1,5 +1,5 @@
 ---
-title: "Lesson 8: Correlations and regressions"
+title: "Sports Data Lesson 8: Correlations and regressions"
 output: 
   learnr::tutorial:
     progressive: true
@@ -28,14 +28,14 @@ Can we put some numbers behind that? Can we prove it or not?
 
 This is what we're going to start to answer. And we'll do it with correlations and regressions.
 
-First, we need data from the 2021 college football season. **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
+First, we need data from the 2022 college football season. **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
 
 ```{r echo=FALSE, class.output="bg-info", results="asis",  message=FALSE,  warning=FALSE}
 library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "http://mattwaite.github.io/sportsdatafiles/footballlogs21.csv",
+  link = "https://dwillis.github.io/sports-data-files/footballlogs22.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -62,7 +62,7 @@ grade_this_code()
 To do this, we need all FBS college football teams and their season stats from last year. Now import the data.
 
 ```{r correlations-load-data, message=FALSE, warning=FALSE}
-correlations <- read_csv("http://mattwaite.github.io/sportsdatafiles/footballlogs21.csv")
+correlations <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs22.csv")
 
 newcorrelations <- correlations %>%
   mutate(
@@ -70,10 +70,10 @@ newcorrelations <- correlations %>%
   )
 ```
 ```{r correlations-load-data-exercise, exercise = TRUE}
-correlations <- read_csv("http://mattwaite.github.io/sportsdatafiles/footballlogs21.csv")
+correlations <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs22.csv")
 ```
 ```{r correlations-load-data-exercise-solution}
-correlations <- read_csv("http://mattwaite.github.io/sportsdatafiles/footballlogs21.csv")
+correlations <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs22.csv")
 ```
 ```{r correlations-load-data-exercise-check}
 grade_this_code()

@@ -43,7 +43,7 @@ knitr::include_graphics(rep("images/chartannotated.png"))
 Let's explore fixing up ggplot's output. We'll need a graphic to work with first, so I'm going to use a bubble chart. 
 
 ```{r text-load-data, message=FALSE, warning=FALSE}
-logs <- read_csv("http://mattwaite.github.io/sportsdatafiles/footballlogs21.csv")
+logs <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs21.csv")
 
 winlosslogs <- logs %>% 
   mutate(

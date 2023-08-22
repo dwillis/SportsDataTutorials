@@ -46,7 +46,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "http://mattwaite.github.io/sportsdatafiles/volleyball1821.csv",
+  link = "https://dwillis.github.io/sports-data-files/volleyball1821.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -73,7 +73,7 @@ grade_this_code()
 And the data.
 
 ```{r ggplot-load-data, message=FALSE, warning=FALSE}
-seasons <- read_csv("http://mattwaite.github.io/sportsdatafiles/volleyball1821.csv")
+seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1821.csv")
 
 terps <- seasons %>%
   mutate(
@@ -93,10 +93,10 @@ big10 <- seasons %>%
   )
 ```
 ```{r ggplot-load-data-exercise, exercise = TRUE}
-seasons <- read_csv("http://mattwaite.github.io/sportsdatafiles/volleyball1821.csv")
+seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1821.csv")
 ```
 ```{r ggplot-load-data-exercise-solution}
-seasons <- read_csv("http://mattwaite.github.io/sportsdatafiles/volleyball1821.csv")
+seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1821.csv")
 ```
 ```{r ggplot-load-data-exercise-check}
 grade_this_code()

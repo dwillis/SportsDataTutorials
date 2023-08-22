@@ -36,7 +36,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "http://mattwaite.github.io/sportsdatafiles/logs22.csv",
+  link = "https://dwillis.github.io/sports-data-files/logs22.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -63,7 +63,7 @@ grade_this_code()
 And the data.
 
 ```{r step-load-data, message=FALSE, warning=FALSE}
-logs <- read_csv("http://mattwaite.github.io/sportsdatafiles/logs22.csv")
+logs <- read_csv("https://dwillis.github.io/sports-data-files/logs22.csv")
 
 difflogs <- logs %>% 
   mutate(Differential = TeamScore - OpponentScore) %>% 
@@ -76,10 +76,10 @@ ws <- bigdiff %>% filter(Team == "Wisconsin")
 il <- bigdiff %>% filter(Team == "Illinois")
 ```
 ```{r step-load-data-exercise, exercise = TRUE}
-logs <- read_csv("http://mattwaite.github.io/sportsdatafiles/logs22.csv")
+logs <- read_csv("https://dwillis.github.io/sports-data-files/logs22.csv")
 ```
 ```{r step-load-data-exercise-solution}
-logs <- read_csv("http://mattwaite.github.io/sportsdatafiles/logs22.csv")
+logs <- read_csv("https://dwillis.github.io/sports-data-files/logs22.csv")
 ```
 ```{r step-load-data-exercise-check}
 grade_this_code()

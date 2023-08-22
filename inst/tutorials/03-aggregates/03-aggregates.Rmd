@@ -76,7 +76,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "http://mattwaite.github.io/sportsdatafiles/ncaa_womens_volleyball_playerstats_2021.csv",
+  link = "https://dwillis.github.io/sports-data-files/ncaa_volleyball_playermatchstats_2022.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -93,7 +93,7 @@ So step 2, after setting up our libraries, is most often going to be importing d
 The code looks *something* like this, but hold off doing anything just yet:
 
 ```
-volleyballplayers <- read_csv("~/Box/SportsData/ncaa_womens_volleyball_playerstats_2021.csv")
+volleyballplayers <- read_csv("~/SportsData/ncaa_volleyball_playermatchstats_2022.csv")
 ```
 
 Let's unpack that.
@@ -102,12 +102,12 @@ The first part -- volleyballplayers -- is the name of your variable. A variable 
 
 The <- bit is the variable assignment operator. It's how we know we're assigning something to a word. Think of the arrow as saying "Take everything on the right of this arrow and stuff it into the thing on the left." So we're creating an empty vessel called `volleyballplayers` and stuffing all this data into it. 
 
-The `read_csv` bits are pretty obvious, except for one thing. What happens in the quote marks is the path to the data. In there, I have to tell R where it will find the data. The easiest thing to do when you are working on your own computer, if you are confused about how to find your data, is to put your data in the same folder as as your notebook (you'll have to save that notebook first). If you do that, then you just need to put the name of the file in there (ncaa_womens_volleyball_playerstats_2021.csv). For this exercise, we're pulling the data from a website, and the path that we'll enter is the url of the data.
+The `read_csv` bits are pretty obvious, except for one thing. What happens in the quote marks is the path to the data. In there, I have to tell R where it will find the data. The easiest thing to do when you are working on your own computer, if you are confused about how to find your data, is to put your data in the same folder as as your notebook (you'll have to save that notebook first). If you do that, then you just need to put the name of the file in there (ncaa_womens_volleyball_playerstats_2022.csv). For this exercise, we're pulling the data from a website, and the path that we'll enter is the url of the data.
 
 Your first task is to import the data. For this exercise, you need to simply run this:
 
 ```{r load-data, message=FALSE, warning=FALSE}
-volleyballplayers <- read_csv("http://mattwaite.github.io/sportsdatafiles/ncaa_womens_volleyball_playerstats_2021.csv")
+volleyballplayers <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_volleyball_playermatchstats_2022.csv")
 
 nplayers <- nrow(volleyballplayers)
 
@@ -123,10 +123,10 @@ avgsets <- volleyballplayers %>%
 killsleader <- volleyballplayers %>% arrange(desc(kills)) %>% slice(1)
 ```
 ```{r load-data-exercise, exercise = TRUE}
-volleyballplayers <- read_csv("http://mattwaite.github.io/sportsdatafiles/ncaa_womens_volleyball_playerstats_2021.csv")
+volleyballplayers <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_volleyball_playermatchstats_2022.csv")
 ```
 ```{r load-data-exercise-solution}
-volleyballplayers <- read_csv("http://mattwaite.github.io/sportsdatafiles/ncaa_womens_volleyball_playerstats_2021.csv")
+volleyballplayers <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_volleyball_playermatchstats_2022.csv")
 ```
 ```{r load-data-exercise-check}
 grade_this_code()
@@ -182,7 +182,7 @@ glue("What if we wanted to know how many players there were by position, i.e. ho
 
 **The secret to writing code is that much of it is a pattern.** The building blocks largely stay the same. With the tidyverse, this is *especially* true.
 
-To accomplish our goal, we start with the name of the data we created before. The same name we used in `head()` and `glipse()`. We'll take that data and we'll introduce a new operator: `%>%`. The best way to read that operator, in my opinion, is to interpret that as "and then do this." So the start of our pattern is `data %>%` which you can read as `data and now we'll do this`.
+To accomplish our goal, we start with the name of the data we created before. The same name we used in `head()` and `glimpse()`. We'll take that data and we'll introduce a new operator: `%>%`. The best way to read that operator, in my opinion, is to interpret that as "and then do this." So the start of our pattern is `data %>%` which you can read as `data and now we'll do this`.
 
 The this, in our case, is `group_by()`. Like `head()` and `glimpse()`, **we need to put something in the parenthesis**. But unlike `head()` and `glimpse()`, this time the something comes from that first row of head. We are grouping data by one of the pieces of the data -- a field. *If we're trying to group by position*, which field looks like it holds the position name? Let's use head again and take a look at the very top row in bold.
 
@@ -324,7 +324,7 @@ glue("So there's {nplayers} players in the data. Of them, {avgsets$count} are of
 
 ### Exercise 7: Arranging two ways
 
-One thing to keep in mind is this: You can use any of these verbs -- group_by, summarize, arrange -- on their own without the others. For example, what player had the most kills in 2021? To find this out, we don't need a group_by or summarize, so what goes in arrange is just the field name. Let's put this in order of kills.
+One thing to keep in mind is this: You can use any of these verbs -- group_by, summarize, arrange -- on their own without the others. For example, what player had the most kills in 2022? To find this out, we don't need a group_by or summarize, so what goes in arrange is just the field name. Let's put this in order of kills.
 
 First let's get the most kills.
 
