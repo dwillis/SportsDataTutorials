@@ -1,5 +1,5 @@
 ---
-title: "Lesson 12: Bar charts"
+title: "Sports Data Lesson 12: Bar charts"
 output: 
   learnr::tutorial:
     progressive: true
@@ -46,7 +46,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "https://dwillis.github.io/sports-data-files/volleyball1821.csv",
+  link = "https://dwillis.github.io/sports-data-files/volleyball1822.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -73,14 +73,14 @@ grade_this_code()
 And the data.
 
 ```{r ggplot-load-data, message=FALSE, warning=FALSE}
-seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1821.csv")
+seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1822.csv")
 
 terps <- seasons %>%
   mutate(
     digsperset = Digs/S
   ) %>% 
   filter(
-    Institution == "Maryland"
+    Team == "Maryland"
   )
 
 big10 <- seasons %>%
@@ -93,10 +93,10 @@ big10 <- seasons %>%
   )
 ```
 ```{r ggplot-load-data-exercise, exercise = TRUE}
-seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1821.csv")
+seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1822.csv")
 ```
 ```{r ggplot-load-data-exercise-solution}
-seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1821.csv")
+seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1822.csv")
 ```
 ```{r ggplot-load-data-exercise-check}
 grade_this_code()
@@ -137,7 +137,7 @@ terps <- seasons %>%
     digsperset = Digs/S
   ) %>% 
   filter(
-    Institution == "Maryland"
+    Team == "Maryland"
   )
 ```
 ```{r ggplot-top-check}
@@ -206,7 +206,7 @@ But what happens when that isn't quite the case.
 
 To change the order of the bars, we have to `reorder` it. With `reorder`, we first have to tell `ggplot` what we are reordering, and then we have to tell it HOW we are reordering it. So it's reorder(FIELD, SORTFIELD). 
 
-First, let's get a dataset of every Big Ten team in 2021 instead of just Maryland.
+First, let's get a dataset of every Big Ten team in 2022 instead of just Maryland.
 
 ```{r ggplot-bar3, exercise=TRUE, exercise.setup = "ggplot-load-data", message=FALSE}
 big10 <- seasons %>%
@@ -225,7 +225,7 @@ big10 <- seasons %>%
   ) %>% 
   filter(
     Conference == "Big Ten" &
-      Season == "2021"
+      Season == "2022"
   )
 ```
 ```{r ggplot-bar3-check}
@@ -244,13 +244,13 @@ ggplot() +
 ```
 ```{r ggplot-bar4-solution, exercise.reveal_solution = FALSE}
 ggplot() + 
-  geom_bar(data=big10, aes(x=reorder(Institution, digsperset), weight=digsperset)) 
+  geom_bar(data=big10, aes(x=reorder(Team, digsperset), weight=digsperset)) 
 ```
 ```{r ggplot-bar4-check}
 grade_this_code()
 ```
 
-Better. And Maryland is third in the conference in digs per set. 
+Better. And Maryland is in the middle of the conference in digs per set. 
 
 ## One last trick: coord flip
 
@@ -260,12 +260,12 @@ Sometimes, we don't want vertical bars. Maybe we think this would look better ho
 
 ```{r ggplot-bar5, exercise=TRUE, exercise.setup = "ggplot-load-data", message=FALSE}
 ggplot() + 
-  geom_bar(data=big10, aes(x=reorder(Institution, ??????????), weight=??????????)) +
+  geom_bar(data=big10, aes(x=reorder(Team, ??????????), weight=??????????)) +
   ?????_????()
 ```
 ```{r ggplot-bar5-solution, exercise.reveal_solution = FALSE}
 ggplot() + 
-  geom_bar(data=big10, aes(x=reorder(Institution, digsperset), weight=digsperset)) +
+  geom_bar(data=big10, aes(x=reorder(Team, digsperset), weight=digsperset)) +
   coord_flip()
 ```
 ```{r ggplot-bar5-check}
