@@ -38,7 +38,7 @@ We do this using a base R function called `rbinom` or binomial distribution. So 
 ```{r sim1, exercise=TRUE, message=FALSE}
 set.seed(1234)
 
-simulations <- rbinom(n = 1000, size = 32, prob = .406)
+simulations <- rbinom(n = ????, size = ???, prob = ????)
 
 table(simulations)
 ```
