@@ -77,21 +77,21 @@ Now load that data.
 ```{r cluster-load-data, message=FALSE, warning=FALSE}
 set.seed(1234)
 
-players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_mens_lacrosse_playerstats_2023.csv") %>% clean_names()
+players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_mens_lacrosse_playerstats_2023.csv") |> clean_names()
 
-playersselected <- players %>% 
-  select(full_name, team, position, games_played, goals, assists, points) %>% 
+playersselected <- players |> 
+  select(full_name, team, position, games_played, goals, assists, points) |> 
   na.omit() 
 
-playersscaled <- playersselected %>% 
-  select(full_name, team, position, games_played, goals, assists, points) %>% 
+playersscaled <- playersselected |> 
+  select(full_name, team, position, games_played, goals, assists, points) |> 
   na.omit() 
 
 clusters <- kmeans(playersscaled, centers = 5, nstart = 25)
 
 playercluster <- data.frame(playersselected, clusters$cluster) 
 
-js <- playercluster %>% filter(full_name == "Joey Spallina")
+js <- playercluster |> filter(full_name == "Joey Spallina")
 ```
 ```{r cluster-load-data-exercise, exercise = TRUE}
 players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_mens_lacrosse_playerstats_2023.csv")
@@ -108,15 +108,15 @@ To cluster this data properly, we have some work to do.
 First, it won't do to have players who haven't scored, so we can use filter to find anyone with greater than 0 points. Next, Spallina is an attacker, so let's just look at that position. Third, we want to limit the data to things that make sense to look at for Spallina -- things like goals, assists and points
 
 ```{r cluster1, exercise=TRUE, exercise.setup = "cluster-load-data", message=FALSE}
-playersselected <- players %>% 
-  filter(points>0) %>% filter(position == "ATT") %>% 
-  select(full_name, team, position, games_played, goals, assists, points) %>% 
+playersselected <- players |> 
+  filter(points>0) |> filter(position == "ATT") |> 
+  select(full_name, team, position, games_played, goals, assists, points) |> 
   na.omit()
 ```
 ```{r cluster1-solution, exercise.reveal_solution = FALSE}
-playersselected <- players %>% 
-  filter(points>0) %>% filter(position == "ATT") %>% 
-  select(full_name, team, position, games_played, goals, assists, points) %>% 
+playersselected <- players |> 
+  filter(points>0) |> filter(position == "ATT") |> 
+  select(full_name, team, position, games_played, goals, assists, points) |> 
   na.omit()
 ```
 ```{r cluster1-check}
@@ -128,15 +128,15 @@ Now, k-means clustering doesn't work as well with data that can be on different 
 Also, k-means clustering won't work with text data, so we need to create a dataframe that's just the numbers, but scaled. We can do that with another select, and using mutate_all with the scale function. The `na.omit()` means get rid of any blanks, because they too will cause errors. 
 
 ```{r cluster2, exercise=TRUE, exercise.setup = "cluster-load-data", message=FALSE}
-playersscaled <- playersselected %>% 
-  select(games_played, goals, assists, points) %>% 
-  mutate_all(scale) %>% 
+playersscaled <- playersselected |> 
+  select(games_played, goals, assists, points) |> 
+  mutate_all(scale) |> 
   na.omit()
 ```
 ```{r cluster2-solution, exercise.reveal_solution = FALSE}
-playersscaled <- playersselected %>% 
-  select(games_played, goals, assists, points) %>% 
-  mutate_all(scale) %>% 
+playersscaled <- playersselected |> 
+  select(games_played, goals, assists, points) |> 
+  mutate_all(scale) |> 
   na.omit()
 ```
 ```{r cluster2-check}
@@ -228,12 +228,12 @@ Now we have a dataframe called playercluster that has our player names and what 
 We now have a dataset and can plot it like anything else. Let's get Spallina and then plot him against the rest of college lacrosse on goals versus assists. 
 
 ```{r cluster7, exercise=TRUE, exercise.setup = "cluster-load-data", message=FALSE}
-js <- playercluster %>% filter(full_name == "Joey Spallina")
+js <- playercluster |> filter(full_name == "Joey Spallina")
 
 js
 ```
 ```{r cluster7-solution, exercise.reveal_solution = FALSE}
-js <- playercluster %>% filter(full_name == "Joey Spallina")
+js <- playercluster |> filter(full_name == "Joey Spallina")
 
 js
 ```
@@ -261,11 +261,11 @@ Not bad, not bad. But who are his peers? Let's find them using filter and arrang
 
 ```{r cluster9, exercise=TRUE, exercise.setup = "cluster-load-data", message=FALSE}
 js_cluster <- js$clusters.cluster
-playercluster %>% filter(?????????) %>% arrange(?????????)
+playercluster |> filter(?????????) |> arrange(?????????)
 ```
 ```{r cluster9-solution, exercise.reveal_solution = FALSE}
 js_cluster <- js$clusters.cluster
-playercluster %>% filter(clusters.cluster == js_cluster) %>% arrange(desc(points))
+playercluster |> filter(clusters.cluster == js_cluster) |> arrange(desc(points))
 ```
 ```{r cluster9-check}
 grade_this_code()

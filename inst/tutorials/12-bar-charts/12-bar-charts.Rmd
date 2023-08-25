@@ -75,18 +75,18 @@ And the data.
 ```{r ggplot-load-data, message=FALSE, warning=FALSE}
 seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1822.csv")
 
-terps <- seasons %>%
+terps <- seasons |>
   mutate(
     digsperset = Digs/S
-  ) %>% 
+  ) |> 
   filter(
     Team == "Maryland"
   )
 
-big10 <- seasons %>%
+big10 <- seasons |>
   mutate(
     digsperset = Digs/S
-  ) %>% 
+  ) |> 
   filter(
     Conference == "Big Ten" &
       Season == "2021"
@@ -123,19 +123,19 @@ Now that we're set up, when making graphics, you're rarely ever going straight f
 To do this, we're going to do a few things we've done before -- we're going to mutate a new column calculating digs per set so we can compare season to season and then we'll use filter to get just Maryland. We'll put that into a new dataframe called `terps`.
 
 ```{r ggplot-top, exercise=TRUE, exercise.setup = "ggplot-load-data", message=FALSE}
-??????? <- ??????? %>%
+??????? <- ??????? |>
   mutate(
     digsperset = ?????/?
-  ) %>% 
+  ) |> 
   filter(
     ?????????? == "Maryland"
   ) 
 ```
 ```{r ggplot-top-solution, exercise.reveal_solution = FALSE}
-terps <- seasons %>%
+terps <- seasons |>
   mutate(
     digsperset = Digs/S
-  ) %>% 
+  ) |> 
   filter(
     Team == "Maryland"
   )
@@ -209,20 +209,20 @@ To change the order of the bars, we have to `reorder` it. With `reorder`, we fir
 First, let's get a dataset of every Big Ten team in 2022 instead of just Maryland.
 
 ```{r ggplot-bar3, exercise=TRUE, exercise.setup = "ggplot-load-data", message=FALSE}
-big10 <- seasons %>%
+big10 <- seasons |>
   mutate(
     digsperset = ????/S
-  ) %>% 
+  ) |> 
   filter(
     Conference == "??? ???" &
       Season == "????"
   )
 ```
 ```{r ggplot-bar3-solution, exercise.reveal_solution = FALSE}
-big10 <- seasons %>%
+big10 <- seasons |>
   mutate(
     digsperset = Digs/S
-  ) %>% 
+  ) |> 
   filter(
     Conference == "Big Ten" &
       Season == "2022"
