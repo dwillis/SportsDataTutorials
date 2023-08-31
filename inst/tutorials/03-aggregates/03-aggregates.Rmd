@@ -112,7 +112,7 @@ volleyballplayers <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_
 nplayers <- nrow(volleyballplayers)
 
 avgsets <- volleyballplayers |>
-  group_by(pos) |>
+  group_by(position) |>
   summarise(
     count = n(),
     mean_sets = mean(s),
@@ -213,7 +213,7 @@ NAMEOFDATA |>
 ```
 ```{r group-by-solution, exercise.reveal_solution = FALSE}
 volleyballplayers |>
-  group_by(pos) |>
+  group_by(position) |>
   summarise(
     total = n()
   ) 
@@ -240,7 +240,7 @@ volleyballplayers |>
 ```
 ```{r group-by-2-solution, exercise.reveal_solution = FALSE}
 volleyballplayers |>
-  group_by(pos) |>
+  group_by(position) |>
   summarise(
     total = n()
   ) |> 
@@ -303,7 +303,7 @@ Let's look just a the number of sets (s) each position gets. **In summarize, wha
 ```
 ```{r group-by-4-solution, exercise.reveal_solution = FALSE}
 volleyballplayers |>
-  group_by(pos) |>
+  group_by(position) |>
   summarise(
     count = n(),
     mean_sets = mean(s),
@@ -379,7 +379,7 @@ volleyballplayers |>
 ```
 ```{r group-by-7-solution, exercise.reveal_solution = FALSE}
 volleyballplayers |> 
-  group_by(pos) |> 
+  group_by(position) |> 
   summarise(
     total = sum(pts), 
     avg_points = mean(pts), 
