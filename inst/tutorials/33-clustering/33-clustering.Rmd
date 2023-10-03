@@ -184,13 +184,13 @@ plot(k.values, wss_values,
 grade_this_code()
 ```
 
-The Elbow method -- so named because you're looking for the "elbow" where the line flattens out. In this case, it looks like a K of 8 is ideal. So let's try that. We're going to use the kmeans function, saving it to an object called clusters. We just need to tell it our dataframe name, how many centers (k) we want, and we'll use a sensible default for how many different configurations to try. 
+The Elbow method -- so named because you're looking for the "elbow" where the line flattens out. In this case, it looks like a K of 5 is ideal. So let's try that. We're going to use the kmeans function, saving it to an object called clusters. We just need to tell it our dataframe name, how many centers (k) we want, and we'll use a sensible default for how many different configurations to try. 
 
 ```{r cluster4, exercise=TRUE, exercise.setup = "cluster-load-data", message=FALSE}
-clusters <- kmeans(playersscaled, centers = 8, nstart = 25)
+clusters <- kmeans(playersscaled, centers = 5, nstart = 25)
 ```
 ```{r cluster4-solution, exercise.reveal_solution = FALSE}
-clusters <- kmeans(playersscaled, centers = 8, nstart = 25)
+clusters <- kmeans(playersscaled, centers = 5, nstart = 25)
 ```
 ```{r cluster4-check}
 grade_this_code()
@@ -208,7 +208,7 @@ clusters
 grade_this_code()
 ```
 
-Interpreting this output, the very first thing you need to know is that **the cluster numbers are meaningless**. They aren't ranks. They aren't anything. After you have taken that on board, look at the cluster sizes at the top. Clusters 1, 3 and 6 are pretty large compared to others. That's notable. Then we can look at the cluster means. For reference, 0 is going to be average. So group 4 is above average on goals. Group 3 is below, group 6 is slightly above. 
+Interpreting this output, the very first thing you need to know is that **the cluster numbers are meaningless**. They aren't ranks. They aren't anything. After you have taken that on board, look at the cluster sizes at the top. Clusters 4 and 5 are pretty large compared to others. That's notable. Then we can look at the cluster means. For reference, 0 is going to be average. So group 5 is below average on goals. Group 4 is below, group 2 is slightly above. 
 
 So which group is Joey Spallina in? Well, first we have to put our data back together again. In clusters, there is a list of cluster assignments in the same order we put them in, but recall we have no names. So we need to re-combine them with our original data. We can do that with the following:
 
@@ -222,7 +222,7 @@ playercluster <- data.frame(playersselected, clusters$cluster)
 grade_this_code()
 ```
 
-Now we have a dataframe called playercluster that has our player names and what cluster they are in. The fastest way to find Joey Spallina is to double click on the playercluster table in the environment and use the search in the top right of the table. Because this is based on some random selections of points to start the groupings, these may change from person to person, but Spallina is in Group 2 in my data. 
+Now we have a dataframe called playercluster that has our player names and what cluster they are in. The fastest way to find Joey Spallina is to double click on the playercluster table in the environment and use the search in the top right of the table. Because this is based on some random selections of points to start the groupings, these may change from person to person, but Spallina is in Group 3 in my data. 
 
 We now have a dataset and can plot it like anything else. Let's get Spallina and then plot him against the rest of college lacrosse on goals versus assists. 
 
@@ -240,7 +240,7 @@ js
 grade_this_code()
 ```
 
-So Joey is in cluster 2 in my data, which if you look at our clusters, puts him in the cluster with all above average metrics. What does that look like? Let's look at scoring by creating a scatterplot using goals on the x-axis and assists on the y-axis, adding Spallina in orange so he'll stand out.
+So Joey is in cluster 3 in my data, which if you look at our clusters, puts him in the cluster with all above average metrics. What does that look like? Let's look at scoring by creating a scatterplot using goals on the x-axis and assists on the y-axis, adding Spallina in orange so he'll stand out.
 
 ```{r cluster8, exercise=TRUE, exercise.setup = "cluster-load-data", message=FALSE}
 ggplot() + 
@@ -270,4 +270,4 @@ playercluster |> filter(clusters.cluster == js_cluster) |> arrange(desc(points))
 grade_this_code()
 ```
 
-So there are the 14 attackmen most like Joey Spallina. Pretty good company, and also a good starting point for making comparisons.
+So there are the attackmen most like Joey Spallina. Pretty good company, and also a good starting point for making comparisons.
