@@ -84,7 +84,8 @@ playersselected <- players |>
   na.omit() 
 
 playersscaled <- playersselected |> 
-  select(full_name, team, position, games_played, goals, assists, points) |> 
+  select(games_played, goals, assists, points) |> 
+  mutate_all(scale) |> 
   na.omit() 
 
 clusters <- kmeans(playersscaled, centers = 5, nstart = 25)
