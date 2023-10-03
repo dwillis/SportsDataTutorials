@@ -77,7 +77,7 @@ Now load that data.
 ```{r cluster-load-data, message=FALSE, warning=FALSE}
 set.seed(1234)
 
-players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_mens_lacrosse_playerstats_2023.csv") |> clean_names()
+players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_mens_lacrosse_playerstats_2023.csv")
 
 playersselected <- players |> 
   select(full_name, team, position, games_played, goals, assists, points) |> 
