@@ -38,14 +38,12 @@ First thing we do is load some libraries and set a seed, so if we run this repea
 
 ```{r load-tidyverse, exercise=TRUE, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(janitor)
 library(cluster)
 
 set.seed(1234)
 ```
 ```{r load-tidyverse-solution}
 library(tidyverse)
-library(janitor)
 library(cluster)
 
 set.seed(1234)
