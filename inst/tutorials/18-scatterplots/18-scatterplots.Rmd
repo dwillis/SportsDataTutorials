@@ -25,9 +25,9 @@ Scatterplots are very good at showing **relationships between two numbers**. The
 
 If this sounds like the correlations and regressions tutorial, you're right. Scatterplots and regressions fit together like a hand in a glove. Scatterplots help you *see* what the regression is trying to say. 
 
-So let's ask a silly question. Nebraska is a volleyball school. We're good at it. We recruit well for it. But is volleyball recruiting as simple as recruiting the tallest athlete and let them pound the ball at shorter athletes? Put more simply: Does height dictate attacking success? Taller athlete, more kills?
+So let's ask a silly question. Is volleyball recruiting as simple as recruiting the tallest athlete and let them pound the ball at shorter athletes? Put more simply: Does height dictate attacking success? Taller athlete, more kills?
 
-First, we need libraries and every college volleyball player from the last season. **What we're interested in is less about a specific player and more about a general point: Are these numbers related and by how much? What can they tell you about your players in general?**
+First, we need libraries and every college volleyball player from last season. **What we're interested in is less about a specific player and more about a general point: Are these numbers related and by how much? What can they tell you about your players in general?**
 
 Here is that data. Per usual: **For purposes of this exercise, you don't need to do this. The data is included here if you want to try this in your own notebook.**
 
@@ -36,7 +36,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_playerstats_2021.csv",
+  link = "https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_playerstats_2022.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -62,7 +62,7 @@ grade_this_code()
 And the data.
 
 ```{r scatter-load-data, message=FALSE, warning=FALSE}
-players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_playerstats_2021.csv")
+players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_playerstats_2022.csv")
 
 tall <- players |> 
   mutate(height = (12 * feet) + inches)
@@ -74,10 +74,10 @@ newtall <- tall |>
          )
 ```
 ```{r scatter-load-data-exercise, exercise = TRUE}
-players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_playerstats_2021.csv")
+players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_playerstats_2022.csv")
 ```
 ```{r scatter-load-data-exercise-solution}
-players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_playerstats_2021.csv")
+players <- read_csv("https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_playerstats_2022.csv")
 ```
 ```{r scatter-load-data-exercise-check}
 grade_this_code()
@@ -177,7 +177,7 @@ ggplot() +
 grade_this_code()
 ```
 
-Better, but woof is there a big difference starting around 67 inches -- or about 5'7". There are players who are 5'7" who have zero kills and players the same height with more than 375. There's a player who is 6'10" who has fewer kills than a player who is 5'6". 
+Better, but woof is there a big difference starting around 67 inches -- or about 5'7". There are players who are 5'7" who have zero kills and players the same height with more than 375. There's a player who is 6'10" who has fewer kills than a player who is 5'4"! 
 
 So is height predictive? We can add a new geom to this, called `geom_smooth` that will add a regression line -- a prediction line -- that is all but identical to our `geom_point`. The only thing added is the `method="lm"`.
 
@@ -195,7 +195,7 @@ ggplot() +
 grade_this_code()
 ```
 
-A straight line across is bad. It means there's no pattern here. But there is a line that would indicate that height is somewhat predictive. But how predictive? Can we measure that? 
+A straight line across is bad. It means there's no pattern. But there is a line that would indicate that height is somewhat predictive. But how predictive? Can we measure that? 
 
 ### Exercise 4: Regressions are back
 
@@ -215,18 +215,18 @@ grade_this_code()
 
 Remember from Chapter 9: There's just a few things you really need.
 
-The first thing: R-squared. In this case, the Adjusted R-squared value is 0.3022, which we can interpret as the the height of the player predicts about 30 percent of the variance in kills. 
+The first thing: R-squared. In this case, the Adjusted R-squared value is 0.3085, which we can interpret as the the height of the player predicts about 30 percent of the variance in kills. 
 
 Second: The P-value. We want anything less than .05. If it's above .05, the difference between them is not statistically significant -- it's probably explained by random chance. In our case, we have < 2.2e-16. So it's not random. Height really does impact kills -- but we kinda knew that already. 
 
-Normally, we'd stop here, but let's look at the third element: The coefficient. In this case, the coefficient for height is 21.003. What this model predicts, given that and the intercept of -1348.654, is this: Every player starts about 1350 kills in the hole. For every inch they grow, they get 21 kills. Remember your algebra and y = mx + b. In this case, y is the wins, m is the coefficient, x is the number of threes given up and b is the intercept. 
+Normally, we'd stop here, but let's look at the third element: The coefficient. In this case, the coefficient for height is 21.9140. What this model predicts, given that and the intercept of -1410.6429, is this: Every player starts about 1350 kills in the hole. For every inch they grow, they get 21 kills. Remember your algebra and y = mx + b. In this case, y is the wins, m is the coefficient, x is the number of threes given up and b is the intercept. 
 
-Let's use Madi Kubik as an example. She's 6'3" on the roster, or 75 inches.  
+Let's use Anastasia Russ as an example. She's 6'5" on the roster, or 77 inches.  
 
-y = 21.003 * 75 - 1348.654 or 226.5 kills. 
+y = 21.9140 * 77 - 1410.6429 or 276 kills. 
 
-How many kills did Kubik have last season? 412. 
+How many kills did Russ have last season? 205. 
 
-If we built a model to predict kills based purely on height, we missed Kubik's actual results by almost a factor of 2. Not great. 
+If we built a model to predict kills based purely on height, we missed Russ' actual results by a decent margin. Not great.
 
 **This is an important lesson: Not all scatterplots work. Not all scatterplots tell a clear story. If you try a scatterplot and get this level of inconclusiveness, you need to try something else.**
