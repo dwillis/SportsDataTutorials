@@ -30,7 +30,7 @@ In this lesson, we're going to use a method that sounds advanced but it really q
 
 Imagine two dots on a scatterplot. If you took a ruler out and measured the distance between those dots, you'd know how far apart they are. In math, that's called the Euclidean distance. It's just the space between them in numbers. Where k-nearest neighbor comes in, you have lots of dots and you want measure the distance between all of them. What does k-means clustering do? It lumps them into groups based on the average distance between them. Players who are good on offense but bad on defense are over here, good offense good defense are over here. And using the Euclidean distance between them, we can decide who is in and who is out of those groups.
 
-For this exercise, I want to look at men's college lacrosse players. Earlier this year, Maryland (and Merrill) grad [Jonathan Donville wrote a piece highlighting elite performances from last season](https://cnsmaryland.org/2023/05/19/charting-the-elite-statistical-performances-of-the-2023-ncaa-lacrosse-season/), singling out Syracuse's Joey Spallina as the best freshman scorer. How does Spallina rank among all NCAA players? Who are his peers, performance-wise? 
+For this exercise, I want to look at men's college lacrosse players. In 2023, Maryland (and Merrill) grad [Jonathan Donville wrote a piece highlighting elite performances from last season](https://cnsmaryland.org/2023/05/19/charting-the-elite-statistical-performances-of-the-2023-ncaa-lacrosse-season/), singling out Syracuse's Joey Spallina as the best freshman scorer. How does Spallina rank among all NCAA players? Who are his peers, performance-wise? 
 
 To answer this, we'll use k-means clustering. 
 
@@ -52,7 +52,7 @@ set.seed(1234)
 grade_this_code()
 ```
 
-Let's load the player data from this season. Here it is if you want to try this in your own notebook.
+Let's load the player data from the 2023 season. Here it is if you want to try this in your own notebook.
 
 ```{r echo=FALSE, class.output="bg-info", results="asis",  message=FALSE,  warning=FALSE}
 library(downloadthis)

@@ -43,7 +43,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "https://dwillis.github.io/sports-data-files/volleyball1822.csv",
+  link = "https://dwillis.github.io/sports-data-files/volleyball1823.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -72,7 +72,7 @@ grade_this_code()
 And load the data.
 
 ```{r zscore-load-data, message=FALSE, warning=FALSE, results=FALSE}
-seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1822.csv")
+seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1823.csv")
 
 perset <- seasons |> 
   mutate(
@@ -93,11 +93,11 @@ teamzscore <- perset |>
 ```
 
 ```{r zscore-load-data-exercise, exercise = TRUE}
-seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1822.csv")
+seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1823.csv")
 ```
 
 ```{r zscore-load-data-exercise-solution}
-seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1822.csv")
+seasons <- read_csv("https://dwillis.github.io/sports-data-files/volleyball1823.csv")
 ```
 
 ```{r zscore-load-data-exercise-check}
@@ -122,9 +122,9 @@ grade_this_code()
 
 The first thing we need to do is create some metrics to deal with comparing seasons that include the covid season. Then we'll select some fields we think represent team quality and a few things to help us keep things straight.
 
-Every team plays a different number of sets in a season, and really great teams and really bad teams will play fewer sets than middle of the road teams. And, with the covid season, some teams got just a few matches in, others got more. To be able to work with this, we need to standardize around *per set* metrics. Sets in our data are marked as S.
+Every team plays a different number of sets in a season, and really great teams and really bad teams will play fewer sets than middle of the road teams. And, with the covid season, some teams got just a few matches in, others got more. To be able to work with this, we need to standardize around *per set* metrics. Sets in our data are marked as `s`.
 
-To get that, we're going to use mutate to create `killsperset`, `digsperset` and `acesperset`. Then, we're going to use select to get Season, Institution, Conference and our four metrics.
+To get that, we're going to use mutate to create `killsperset`, `digsperset` and `acesperset`. Then, we're going to use select to get season, team and our three metrics.
 
 ```{r zscore2, exercise=TRUE, exercise.setup = "zscore-load-data"}
 perset <- seasons |> 
@@ -133,17 +133,17 @@ perset <- seasons |>
     digsperset = ????/?,
     acesperset = ????/?
   ) |>
-  select(Season, Institution, Conference, ???????????, ??????????, ??????????)
+  select(season, team, ???????????, ??????????, ??????????)
 ```
 
 ```{r zscore2-solution, exercise.reveal_solution = FALSE}
 perset <- seasons |> 
   mutate(
-    killsperset = Kills/S,
-    digsperset = Digs/S,
-    acesperset = Aces/S
+    killsperset = kills/s,
+    digsperset = digs/s,
+    acesperset = aces/s
   ) |>
-  select(Season, Team, Conference, killsperset, digsperset, acesperset)
+  select(season, team, killsperset, digsperset, acesperset)
 ```
 
 ```{r zscore2-check}
@@ -152,9 +152,9 @@ grade_this_code()
 
 ## Exercise 2: Create a z-score
 
-The first thing we're going to do is deal with having multiple seasons. We want the z-score to be centered on the average for *that season*, so each school gets ranked against their competition, not all teams in all seasons. That way, we compare how good the 2018 Terps were compared to 2018 teams, vs 2022 teams, which is impossible. A team from 2018 can't play a team from 2022. How do we make z-scores for each season? Simple: group by.
+The first thing we're going to do is deal with having multiple seasons. We want the z-score to be centered on the average for *that season*, so each school gets ranked against their competition, not all teams in all seasons. That way, we compare how good the 2018 Terps were compared to 2018 teams, vs 2023 teams, which is impossible. A team from 2018 can't play a team from 2023. How do we make z-scores for each season? Simple: group by.
 
-Then, we're *NOT* going to use summarize. We'll use mutate. That has the effect of putting all the 2022 teams together in a pile, calculating each teams z-score and then just leaving it there instead of folding it all together into a single number (like summarize would).
+Then, we're *NOT* going to use summarize. We'll use mutate. That has the effect of putting all the 2023 teams together in a pile, calculating each teams z-score and then just leaving it there instead of folding it all together into a single number (like summarize would).
 
 To calculate a z-score in R, the easiest way is to use the `scale` function in base R. To use it, you use `scale(FieldName, center=TRUE, scale=TRUE)`. The center and scale indicate if you want to subtract from the mean and if you want to divide by the standard deviation, respectively. We do.
 
@@ -173,7 +173,7 @@ teamzscore <- perset |>
 
 ```{r zscore3-solution, exercise.reveal_solution = FALSE}
 teamzscore <- perset |>
-  group_by(Season) |> 
+  group_by(season) |> 
   mutate(
     killszscore = as.numeric(scale(killsperset, center = TRUE, scale = TRUE)),
     aceszscore = as.numeric(scale(acesperset, center = TRUE, scale = TRUE)),
@@ -186,7 +186,7 @@ teamzscore <- perset |>
 grade_this_code()
 ```
 
-So now we have a dataframe called `teamzscore` that has 1669 volleyball teams with Z scores. What does it look like?
+So now we have a dataframe called `teamzscore` that has 2001 volleyball teams with Z scores. What does it look like?
 
 ```{r head-data, exercise=TRUE, exercise.setup = "zscore-load-data"}
 head(teamzscore)
