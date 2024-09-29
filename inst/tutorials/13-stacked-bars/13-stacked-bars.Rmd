@@ -30,7 +30,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "https://dwillis.github.io/sports-data-files/footballlogs22.csv",
+  link = "https://dwillis.github.io/sports-data-files/footballlogs23.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -57,7 +57,7 @@ grade_this_code()
 And the data.
 
 ```{r stacked-load-data, message=FALSE, warning=FALSE}
-football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs22.csv")
+football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs23.csv")
 
 big <- football |> 
   group_by(Conference, Team) |> 
@@ -73,10 +73,10 @@ bigwide <- big |>
     values_to="Yards")
 ```
 ```{r stacked-load-data-exercise, exercise = TRUE}
-football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs22.csv")
+football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs23.csv")
 ```
 ```{r stacked-load-data-exercise-solution}
-football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs22.csv")
+football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs23.csv")
 ```
 ```{r stacked-load-data-exercise-check}
 grade_this_code()
@@ -212,4 +212,4 @@ ggplot() +
 grade_this_code()
 ```
 
-And just like that ... Michigan comes out on top. And look who is right in the middle of the pack.
+And just like that ... Michigan comes out on top. Maryland? Fourth, on the strength of its passing game.
