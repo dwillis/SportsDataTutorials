@@ -1,5 +1,5 @@
 ---
-title: "Sports Data Lesson 19: Step charts"
+title: "Sports Data Lesson 16: Step charts"
 output: 
   learnr::tutorial:
     progressive: true
@@ -23,7 +23,7 @@ tutorial_options(exercise.completion=FALSE)
 
 Step charts are **a method of showing progress** toward a total number They combine showing change over time -- **cumulative change over time** -- with magnitude. They're good at inviting comparison. 
 
-There's great examples out there. First is the Washignton Post looking at [Lebron passing Jordan's career point total](https://www.washingtonpost.com/graphics/sports/lebron-james-michael-jordan-nba-scoring-list/?utm_term=.481074150849). Another is John Burn-Murdoch's work at the Financial Times (which is paywalled) about soccer stars. [Here's an example of his work outside the paywall](http://johnburnmurdoch.github.io/projects/goal-lines/CL/).
+There's great examples out there. First is the Washington Post looking at [Lebron passing Jordan's career point total](https://www.washingtonpost.com/graphics/sports/lebron-james-michael-jordan-nba-scoring-list/?utm_term=.481074150849). Another is John Burn-Murdoch's work at the Financial Times (which is paywalled) about soccer stars. [Here's an example of his work outside the paywall](http://johnburnmurdoch.github.io/projects/goal-lines/CL/).
 
 To replicate this, we need cumulative data -- data that is the running total of data at a given point. So think of it this way -- Maryland scores 50 points in a basketball game and then 50 more the next, their cumulative total at two games is 100 points. 
 
@@ -36,7 +36,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "https://dwillis.github.io/sports-data-files/logs22.csv",
+  link = "https://dwillis.github.io/sports-data-files/logs24.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -63,23 +63,23 @@ grade_this_code()
 And the data.
 
 ```{r step-load-data, message=FALSE, warning=FALSE}
-logs <- read_csv("https://dwillis.github.io/sports-data-files/logs22.csv")
+logs <- read_csv("https://dwillis.github.io/sports-data-files/logs24.csv")
 
 difflogs <- logs |> 
   mutate(Differential = TeamScore - OpponentScore) |> 
   group_by(Team) |> 
   mutate(CumDiff = cumsum(Differential))
 
-bigdiff <- difflogs |> filter(Conference == "Big Ten")
+bigdiff <- difflogs |> filter(Conference == "Big Ten MBB")
 md <- bigdiff |> filter(Team == "Maryland")
 ws <- bigdiff |> filter(Team == "Wisconsin")
 il <- bigdiff |> filter(Team == "Illinois")
 ```
 ```{r step-load-data-exercise, exercise = TRUE}
-logs <- read_csv("https://dwillis.github.io/sports-data-files/logs22.csv")
+logs <- read_csv("https://dwillis.github.io/sports-data-files/logs24.csv")
 ```
 ```{r step-load-data-exercise-solution}
-logs <- read_csv("https://dwillis.github.io/sports-data-files/logs22.csv")
+logs <- read_csv("https://dwillis.github.io/sports-data-files/logs24.csv")
 ```
 ```{r step-load-data-exercise-check}
 grade_this_code()
@@ -94,12 +94,14 @@ The first step to making a step chart is that we need to calculate our rolling c
 
 ```{r step1, exercise=TRUE, exercise.setup = "step-load-data", message=FALSE}
 ???????? <- logs |> 
+  filter(!is.na(W_L)) |>
   mutate(Differential = TeamScore - OpponentScore) |> 
   group_by(????) |> 
   mutate(CumDiff = ??????(Differential))
 ```
 ```{r step1-solution, exercise.reveal_solution = FALSE}
 difflogs <- logs |> 
+  filter(!is.na(W_L)) |> 
   mutate(Differential = TeamScore - OpponentScore) |> 
   group_by(Team) |> 
   mutate(CumDiff = cumsum(Differential))
@@ -118,7 +120,7 @@ Now that we have the cumulative sum for each, let's filter it down to just Big T
 ??????? <- difflogs |> filter(Conference == "??? ???")
 ```
 ```{r step2-solution, exercise.reveal_solution = FALSE}
-bigdiff <- difflogs |> filter(Conference == "Big Ten")
+bigdiff <- difflogs |> filter(Conference == "Big Ten MBB")
 ```
 ```{r step2-check}
 grade_this_code()
@@ -188,8 +190,9 @@ ggplot() +
   geom_step(data=??, aes(x=Date, y=CumDiff, group=Team), color="red") + 
   geom_step(data=??, aes(x=Date, y=CumDiff, group=Team), color="orange") +
   geom_step(data=??, aes(x=Date, y=CumDiff, group=Team), color="black") +
-  annotate("text", x=(as.Date("2022-02-10")), y=-70, label="Maryland") +
-  annotate("text", x=(as.Date("2022-03-01")), y=330, label="Illinois") +
+  annotate("text", x=(as.Date("2024-02-10")), y=100, label="Maryland") +
+  annotate("text", x=(as.Date("2024-03-01")), y=360, label="Illinois") +
+  annotate("text", x=(as.Date("2024-03-01")), y=185, label="Wisconsin") +
   labs(
     x="YOU SHOULD CHANGE THIS TO WHAT THE X AXIS IS", 
     y="Cumulative Point Differential", 
@@ -204,14 +207,14 @@ ggplot() +
   geom_step(data=md, aes(x=Date, y=CumDiff, group=Team), color="red") + 
   geom_step(data=il, aes(x=Date, y=CumDiff, group=Team), color="orange") +
   geom_step(data=ws, aes(x=Date, y=CumDiff, group=Team), color="black") +
-  annotate("text", x=(as.Date("2022-02-10")), y=-50, label="Maryland") +
-  annotate("text", x=(as.Date("2022-03-01")), y=265, label="Illinois") +
-  annotate("text", x=(as.Date("2022-03-01")), y=100, label="Wisconsin") +
+  annotate("text", x=(as.Date("2024-02-10")), y=100, label="Maryland") +
+  annotate("text", x=(as.Date("2024-03-01")), y=360, label="Illinois") +
+  annotate("text", x=(as.Date("2024-03-01")), y=185, label="Wisconsin") +
   labs(
     x="Date", 
     y="Cumulative Point Differential", 
-    title="Maryland lagged behind Big Ten leaders", 
-    subtitle="The Terps rarely strayed from a small scoring advantage", 
+    title="Maryland Middle of the Big Ten Pack", 
+    subtitle="The Terps' scoring differential stayed steady", 
     caption="Source: Sports-Reference.com | By Derek Willis") +
   theme_minimal()
 ```
@@ -219,4 +222,4 @@ ggplot() +
 grade_this_code()
 ```
 
-This is a decent looking chart. Depressing, but it tells a story. 
+This is a decent looking chart. Slightly depressing, but it tells a story. 

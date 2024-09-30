@@ -43,7 +43,7 @@ grade_this_code()
 
 ## Making waffles with vectors
 
-Let's look at Maryland's football bowl game win over Virginia Tech last year. [Here's the box score](https://umterps.com/sports/football/stats/2021/virginia-tech/boxscore/12866), which we'll use for this part of the walkthrough.
+Let's look at Maryland's football bowl game win over Virginia Tech in 2022. [Here's the box score](https://umterps.com/sports/football/stats/2021/virginia-tech/boxscore/12866), which we'll use for this part of the walkthrough.
 
 Maybe the easiest way to do waffle charts, at least at first, is to make vectors of your data and plug them in. To make a vector, we use the `c` or concatenate function.
 
