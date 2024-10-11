@@ -81,7 +81,7 @@ grade_this_code()
 
 ### Exercise 1: Prepare your data
 
-This data has every game from every team in it, so we need to use filtering to limit it, because we just want to look at Maryland. If you don't remember, flip back to lesson 5. Let's make a new dataframe called md for Nebraska's games.
+This data has every game from every team in it, so we need to use filtering to limit it, because we just want to look at Maryland. If you don't remember, flip back to lesson 5. Let's make a new dataframe called md for Maryland's games.
 
 ```{r nu, exercise=TRUE, exercise.setup = "line-load-data", message=FALSE}
 ?? <- logs |> filter(Team == "????????")
@@ -105,7 +105,7 @@ head(md)
 grade_this_code()
 ```
 
-Because this data has just Nebraska data in it, the dates are formatted correctly, and the data is long data (instead of wide), we have what we need to make line charts.
+Because this data has just Maryland data in it, the dates are formatted correctly, and the data is long data (instead of wide), we have what we need to make line charts.
 
 ### Exercise 2: Your first line chart
 
@@ -183,12 +183,13 @@ Let's add all of the Big Ten to our line chart, but this time, we're going to fa
 
 ### Exercise 5: Adding the B1G
 
-An important thing to know is that geoms render in the order that they appear. The first one is on the bottom. The next one is the second layer. The third layer of three is on top. If you put the Big Ten layer last, the lines will cover everything in grey. If you put it first, then the Nebraska and Michigan State lines will be the only ones covered ... by Nebraska and Michigan State.
+An important thing to know is that geoms render in the order that they appear. The first one is on the bottom. The next one is the second layer. The third layer of three is on top. If you put the Big Ten layer last, the lines will cover everything in grey. If you put it first, then the Maryland and Michigan State lines will be the only ones covered ... by Maryland and Michigan State.
 
 NOTE: When you have more than one thing in a dataframe -- teams, players, whatever -- and you're making a line chart out of it, you need to add the `group` to the aesthetic. In this case, the group is the Team.
 
 ```{r line4, exercise=TRUE, exercise.setup = "line-load-data", message=FALSE}
-big <- logs |> filter(Conference == "Big Ten")
+big <- logs |> filter(Conference == "Big Ten MBB")
+msu <- logs |> filter(Team == "Michigan State")
 
 ggplot() + 
   geom_line(data=???, aes(x=Date, y=TeamFGPCT, group=Team), color="????") +
@@ -198,6 +199,7 @@ ggplot() +
 ```
 ```{r line4-solution, exercise.reveal_solution = FALSE}
 big <- logs |> filter(Conference == "Big Ten MBB")
+msu <- logs |> filter(Team == "Michigan State")
 
 ggplot() + 
   geom_line(data=big, aes(x=Date, y=TeamFGPCT, group=Team), color="grey") +
