@@ -76,7 +76,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_matchstats_2023.csv",
+  link = "https://dwillis.github.io/sports-data-files/ncaa_womens_volleyball_matchstats_2024.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -93,7 +93,7 @@ So step 2, after setting up our libraries, is most often going to be importing d
 The code looks *something* like this, but hold off doing anything just yet:
 
 ```
-volleyballplayers <- read_csv("~/SportsData/ncaa_volleyball_playermatchstats_2023.csv")
+volleyballplayers <- read_csv("~/SportsData/ncaa_volleyball_playermatchstats_2024.csv")
 ```
 
 Let's unpack that.
@@ -102,7 +102,7 @@ The first part -- volleyballplayers -- is the name of your variable. A variable 
 
 The <- bit is the variable assignment operator. It's how we know we're assigning something to a word. Think of the arrow as saying "Take everything on the right of this arrow and stuff it into the thing on the left." So we're creating an empty vessel called `volleyballplayers` and stuffing all this data into it. 
 
-The `read_csv` bits are pretty obvious, except for one thing. What happens in the quote marks is the path to the data. In there, I have to tell R where it will find the data. The easiest thing to do when you are working on your own computer, if you are confused about how to find your data, is to put your data in the same folder as as your notebook (you'll have to save that notebook first). If you do that, then you just need to put the name of the file in there (ncaa_womens_volleyball_playerstats_2022.csv). For this exercise, we're pulling the data from a website, and the path that we'll enter is the url of the data.
+The `read_csv` bits are pretty obvious, except for one thing. What happens in the quote marks is the path to the data. In there, I have to tell R where it will find the data. The easiest thing to do when you are working on your own computer, if you are confused about how to find your data, is to put your data in the same folder as as your notebook (you'll have to save that notebook first). If you do that, then you just need to put the name of the file in there (ncaa_womens_volleyball_playerstats_2023.csv). For this exercise, we're pulling the data from a website, and the path that we'll enter is the url of the data.
 
 Your first task is to import the data. For this exercise, you need to simply run this:
 

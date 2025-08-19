@@ -103,7 +103,7 @@ In the window below, create two variables called Number1 and Number2. Set Number
 
 You get an error. `non-numeric argument to binary operator` is a rather computer-ish way of saying you tried to add 5 and Zebra. You can't add those two things together. So when you see that error, the non-numeric part is your hint that you're trying to do math on something that isn't a number. To fix it, just remove the quotes.
 
-Let's do something more real and calculate the number of goals per game the Maryland men's lacrosse team hit last season. To do this, we need to know the number of goals the team scored and the number of games they played. Then it's just simple division. 
+Let's do something more real and calculate the number of goals per game the Maryland men's lacrosse team scored last season. To do this, we need to know the number of goals the team scored and the number of games they played. Then it's just simple division. 
 
 [You can find season stats here](https://umterps.com/sports/mens-lacrosse/stats) at the top of the table in a row labeled Goals. The number of games is in the team's record.
 
@@ -120,14 +120,12 @@ Games <- ??
 SOMETHING / SOMETHING
 ```
 ```{r variables-one-solution, exercise.reveal_solution = FALSE}
-Goals <- 186
-Games <- 17
+Goals <- 200
+Games <- 18
 Goals / Games
 ```
 ```{r variables-one-check}
 grade_this_code()
 ```
-
-If you watched a game, chances are you weren't going to see a lot of consistent scoring. 
 
 This isn't terribly useful just yet. If we wanted to know where the Terps ranked in college lacrosse, it would take us forever to look up every team and do this math. But as you now know, variables can hold anything we want to store in them. Soon enough, that Goals value will hold every team in college lacrosse, and Games will hold the games that every team played. The code doesn't change all that much, but we need to crawl before we walk.
