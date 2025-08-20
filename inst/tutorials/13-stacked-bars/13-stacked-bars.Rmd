@@ -30,7 +30,7 @@ library(downloadthis)
 library(glue)
 
 dllink <- download_link(
-  link = "https://dwillis.github.io/sports-data-files/footballlogs23.csv",
+  link = "https://dwillis.github.io/sports-data-files/footballlogs24.csv",
   button_label = "Download csv file",
   button_type = "danger",
   has_icon = TRUE,
@@ -57,7 +57,7 @@ grade_this_code()
 And the data.
 
 ```{r stacked-load-data, message=FALSE, warning=FALSE}
-football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs23.csv")
+football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs24.csv")
 
 big <- football |> 
   group_by(Conference, Team) |> 
@@ -73,7 +73,7 @@ bigwide <- big |>
     values_to="Yards")
 ```
 ```{r stacked-load-data-exercise, exercise = TRUE}
-football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs23.csv")
+football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs24.csv")
 ```
 ```{r stacked-load-data-exercise-solution}
 football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs23.csv")
@@ -82,7 +82,7 @@ football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs23
 grade_this_code()
 ```
 
-What we have here is every game in college football in 2022. Let's quick take a glimpse.
+What we have here is every game in college football in 2024. Let's quick take a glimpse.
 
 ```{r glimpse-data, exercise=TRUE, exercise.setup = "stacked-load-data"}
 glimpse(??????????)
@@ -212,4 +212,4 @@ ggplot() +
 grade_this_code()
 ```
 
-And just like that ... Michigan comes out on top. Maryland? Fourth, on the strength of its passing game.
+And just like that ... Oregon comes out on top. Maryland? Seventh, on the strength of its passing game.
