@@ -70,7 +70,7 @@ newcorrelations <- correlations |>
   )
 ```
 ```{r correlations-load-data-exercise, exercise = TRUE}
-correlations <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs23.csv")
+correlations <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs24.csv")
 ```
 ```{r correlations-load-data-exercise-solution}
 correlations <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs24.csv")
