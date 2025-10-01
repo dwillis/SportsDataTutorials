@@ -139,11 +139,11 @@ perset <- seasons |>
 ```{r zscore2-solution, exercise.reveal_solution = FALSE}
 perset <- seasons |> 
   mutate(
-    killsperset = kills/s,
-    digsperset = digs/s,
-    acesperset = aces/s
+    killsperset = Kills/S,
+    digsperset = Digs/S,
+    acesperset = Aces/S
   ) |>
-  select(season, team, killsperset, digsperset, acesperset)
+  select(Season, Team, Conference, killsperset, digsperset, acesperset)
 ```
 
 ```{r zscore2-check}
@@ -173,7 +173,7 @@ teamzscore <- perset |>
 
 ```{r zscore3-solution, exercise.reveal_solution = FALSE}
 teamzscore <- perset |>
-  group_by(season) |> 
+  group_by(Season, Conference) |> 
   mutate(
     killszscore = as.numeric(scale(killsperset, center = TRUE, scale = TRUE)),
     aceszscore = as.numeric(scale(acesperset, center = TRUE, scale = TRUE)),
@@ -244,7 +244,7 @@ teamzscore |>
 grade_this_code()
 ```
 
-So, as we can see, with our composite Z Score, the best Big Ten volleyball since 2018 isn't Nebraska, a two-time national semi-finalist. It isn't Wisconsin who won the natty last year and was a finalist in 2019. It's ... Minnesota? Interesting.
+So, as we can see, with our composite Z Score, the best Big Ten volleyball since 2018 isn't Nebraska, a two-time national semi-finalist. It's Wisconsin, a previous champion that was a finalist in 2019. But look at 2018 Minnesota, who lost in the NCAA Tournament that season.
 
 Maryland, a building program, isn't among the top teams on this list. One way to get on it? Beat teams like Wisconsin, which the Terps did last season.
 
