@@ -62,8 +62,8 @@ football <- read_csv("https://dwillis.github.io/sports-data-files/footballlogs24
 big <- football |> 
   group_by(Conference, Team) |> 
   summarise(
-    SeasonRushingYards = sum(RushingYds),
-    SeasonPassingYards = sum(PassingYds),
+    SeasonRushingYards = sum(RushYds),
+    SeasonPassingYards = sum(PassYds),
   ) |> filter(Conference == "Big Ten Conference")
 
 bigwide <- big |> 
@@ -115,8 +115,8 @@ We have game data, and we need season data. To get that, we need to do some grou
 big <- football |> 
   group_by(Conference, Team) |> 
   summarise(
-    SeasonRushingYards = sum(RushingYds),
-    SeasonPassingYards = sum(PassingYds)
+    SeasonRushingYards = sum(RushYds),
+    SeasonPassingYards = sum(PassYds)
   ) |> 
   filter(Conference == "Big Ten Conference")
 ```
@@ -212,4 +212,4 @@ ggplot() +
 grade_this_code()
 ```
 
-And just like that ... Oregon comes out on top. Maryland? Seventh, on the strength of its passing game.
+And just like that ... Penn State comes out on top. Maryland? Tenth, on the strength of its passing game.
